@@ -20,6 +20,16 @@
   font-family: 'Raleway';
   font-weight: 300;
   src: url("https://storage.googleapis.com/purple-monkey/Raleway/Raleway-Light.ttf") format('truetype');
+/* This is not working, and I'm not sure why */
+  font-display: swap;
+  font-family: 'Roboto';
+  font-weight: normal;
+  src: url("https://storage.googleapis.com/five-gallon/Roboto-Regular.ttf") format('truetype');
+  font-display: swap;
+  font-family: 'Arvo';
+  font-weight: normal;
+  src: url("https://storage.googleapis.com/five-gallon/Arvo-Regular.ttf") format('truetype');
+/* This is not working, and I'm not sure why */
 }
 html {
   font-size: 100%;
@@ -223,6 +233,69 @@ textarea:focus {
   to {
     opacity: 0;
   }
+}
+@font-face {
+  font-family: Arvo;
+}
+footer {
+  background-color: #c49542;
+}
+.footerPage {
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.footerTitle {
+  color: #fff;
+  font-family: Arvo;
+  font-weight: bold;
+}
+.footerInfo {
+  color: #231f20;
+  font-family: Roboto;
+  text-decoration: none;
+}
+.footerLink,
+.footerLink:hover {
+  color: #231f20;
+/* font-family: Roboto; */
+  text-decoration: none;
+}
+div {
+  display: inline-block;
+  padding-top: 25px;
+  text-align: center;
+  width: 19.7%;
+}
+a {
+  color: #231f20;
+/* This is not working, and I'm not sure why */
+  font-family: Roboto;
+/* This is not working, and I'm not sure why */
+}
+.hCurrent {
+  color: #c49542;
+/* This is not working, and I'm not sure why */
+  font-family: Arvo;
+/* This is not working, and I'm not sure why */
+  font-weight: bold;
+}
+.hLogo {
+  padding-top: 40px;
+  width: 100%;
+}
+img {
+  height: 150px;
+}
+.homePage {
+  text-align: center;
+  padding-top: 30px;
+}
+.homeTitle {
+  font-size: 30px;
+}
+.homeParagraph {
+  width: 40%;
 }
 .Toast {
   position: fixed;
