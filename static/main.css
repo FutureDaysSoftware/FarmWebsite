@@ -236,6 +236,30 @@ textarea:focus {
 }
 footer {
   background-color: #c49542;
+  color: #231f20;
+  padding-bottom: 50px;
+  padding-top: 50px;
+  text-align: center;
+}
+.fTitle {
+  color: #fff;
+/* This is not working, and I'm not sure why */
+  font-family: Arvo;
+/* This is not working, and I'm not sure why */
+  font-weight: bold;
+}
+.fInfo {
+/* This is not working, and I'm not sure why */
+  font-family: Roboto;
+/* This is not working, and I'm not sure why */
+}
+.fLink,
+.fLink:hover {
+  color: #231f20;
+/* This is not working, and I'm not sure why */
+  font-family: Roboto;
+/* This is not working, and I'm not sure why */
+  text-decoration: none;
 }
 .hDiv {
   display: inline-block;
