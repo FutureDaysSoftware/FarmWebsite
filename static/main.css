@@ -234,40 +234,16 @@ textarea:focus {
     opacity: 0;
   }
 }
-@font-face {
-  font-family: Arvo;
-}
 footer {
   background-color: #c49542;
 }
-.footerPage {
-  text-align: center;
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
-.footerTitle {
-  color: #fff;
-  font-family: Arvo;
-  font-weight: bold;
-}
-.footerInfo {
-  color: #231f20;
-  font-family: Roboto;
-  text-decoration: none;
-}
-.footerLink,
-.footerLink:hover {
-  color: #231f20;
-/* font-family: Roboto; */
-  text-decoration: none;
-}
-div {
+.hDiv {
   display: inline-block;
   padding-top: 25px;
   text-align: center;
   width: 19.7%;
 }
-a {
+.hLink {
   color: #231f20;
 /* This is not working, and I'm not sure why */
   font-family: Roboto;
@@ -284,7 +260,7 @@ a {
   padding-top: 40px;
   width: 100%;
 }
-img {
+.hImg {
   height: 150px;
 }
 .homePage {
