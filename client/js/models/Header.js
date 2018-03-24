@@ -1,9 +1,9 @@
-module.exports = Object.assign( {}, require('./__proto__.js'), {
-
+module.exports = Object.assign({}, require('./__proto__.js'), {
     data: [
-        'home',
-        'projects',
-        'contact'
+        'about us',
+        'where to find us',
+        'future days farm',
+        'the blog',
+        'our offerings'
     ]
-
-} )
+})

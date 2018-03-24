@@ -7,29 +7,15 @@
 .autocomplete-suggestion { position: relative; padding: 0 .6em; line-height: 23px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 1.02em; color: #333; }
 .autocomplete-suggestion b { font-weight: normal; color: #1f8dd6; }
 .autocomplete-suggestion.selected { background: #f0f0f0; }
- {
-  font-display: swap;
-  font-family: 'Raleway';
-  font-weight: normal;
-  src: url("https://storage.googleapis.com/purple-monkey/Raleway/Raleway-Regular.ttf") format('truetype');
-  font-display: swap;
-  font-family: 'Raleway';
-  font-weight: 700;
-  src: url("https://storage.googleapis.com/purple-monkey/Raleway/Raleway-Bold.ttf") format('truetype');
-  font-display: swap;
-  font-family: 'Raleway';
-  font-weight: 300;
-  src: url("https://storage.googleapis.com/purple-monkey/Raleway/Raleway-Light.ttf") format('truetype');
-/* This is not working, and I'm not sure why */
-  font-display: swap;
+@font-face {
   font-family: 'Roboto';
-  font-weight: normal;
-  src: url("https://storage.googleapis.com/five-gallon/Roboto-Regular.ttf") format('truetype');
-  font-display: swap;
+  font-weight: 300;
+  src: url("/static/fonts/Roboto-Regular.ttf") format('truetype');
+}
+@font-face {
   font-family: 'Arvo';
-  font-weight: normal;
-  src: url("https://storage.googleapis.com/five-gallon/Arvo-Regular.ttf") format('truetype');
-/* This is not working, and I'm not sure why */
+  font-weight: 300;
+  src: url("/static/fonts/Arvo-Regular.ttf") format('truetype');
 }
 html {
   font-size: 100%;
@@ -234,68 +220,99 @@ textarea:focus {
     opacity: 0;
   }
 }
-footer {
+.Footer {
   background-color: #c49542;
-  color: #231f20;
-  padding-bottom: 50px;
-  padding-top: 50px;
+  font-family: Roboto;
+  padding-bottom: 3rem;
+  padding-top: 3rem;
   text-align: center;
 }
-.fTitle {
+.Footer >div:first-child {
   color: #fff;
-/* This is not working, and I'm not sure why */
   font-family: Arvo;
-/* This is not working, and I'm not sure why */
   font-weight: bold;
+  text-transform: uppercase;
 }
-.fInfo {
-/* This is not working, and I'm not sure why */
-  font-family: Roboto;
-/* This is not working, and I'm not sure why */
+.Footer a {
+  color: #000;
 }
-.fLink,
-.fLink:hover {
-  color: #231f20;
-/* This is not working, and I'm not sure why */
-  font-family: Roboto;
-/* This is not working, and I'm not sure why */
-  text-decoration: none;
+.Header {
+  display: flex;
 }
-.hDiv {
+.Header div {
   display: inline-block;
-  padding-top: 25px;
-  text-align: center;
-  width: 19.7%;
-}
-.hLink {
-  color: #231f20;
-/* This is not working, and I'm not sure why */
+  flex: 1;
   font-family: Roboto;
-/* This is not working, and I'm not sure why */
+  padding-top: 2rem;
+  text-align: center;
+  text-transform: uppercase;
 }
-.hCurrent {
+.Header div.selected {
   color: #c49542;
-/* This is not working, and I'm not sure why */
+}
+.Header div:nth-child(3) {
+  color: #c49542;
   font-family: Arvo;
-/* This is not working, and I'm not sure why */
   font-weight: bold;
 }
-.hLogo {
-  padding-top: 40px;
-  width: 100%;
+.Header div:hover {
+  text-decoration: underline;
 }
-.hImg {
-  height: 150px;
+div img {
+  height: 15rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 2rem;
 }
-.homePage {
+div div {
+  padding-top: 2rem;
   text-align: center;
-  padding-top: 30px;
 }
-.homeTitle {
+div >div {
+  font-family: Arvo;
+  font-size: 2rem;
+}
+.mHeadline {
+  font-family: Arvo;
   font-size: 30px;
+  padding-top: 30px;
+  text-align: center;
 }
-.homeParagraph {
+.mSubtitle {
+  font-family: Roboto;
+  text-align: center;
+}
+.mParagraph {
+  font-family: Roboto;
+  margin-left: 30%;
+  margin-right: 30%;
+  text-align: center;
   width: 40%;
+}
+.mRow {
+  text-align: center;
+}
+.mPicHolder {
+  background-color: #c49542;
+  display: inline-block;
+  position: relative;
+  width: 30%;
+}
+.mPicHolder:hover > .mPic {
+  opacity: 0.5;
+}
+.mPic {
+  height: 400px;
+}
+.mTest {
+  background-color: #231f20;
+  color: #fff;
+  font-family: Arvo;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
 }
 .Toast {
   position: fixed;

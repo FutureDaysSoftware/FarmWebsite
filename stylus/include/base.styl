@@ -1,11 +1,13 @@
-fontFace( 'Raleway', normal, 'https://storage.googleapis.com/purple-monkey/Raleway/Raleway-Regular.ttf' )
-fontFace( 'Raleway', 700, 'https://storage.googleapis.com/purple-monkey/Raleway/Raleway-Bold.ttf' )
-fontFace( 'Raleway', 300, 'https://storage.googleapis.com/purple-monkey/Raleway/Raleway-Light.ttf' )
-
-/* This is not working, and I'm not sure why */
-fontFace('Roboto', normal, 'https://storage.googleapis.com/five-gallon/Roboto-Regular.ttf');
-fontFace('Arvo', normal, 'https://storage.googleapis.com/five-gallon/Arvo-Regular.ttf');
-/* This is not working, and I'm not sure why */
+@font-face {
+  font-family: 'Roboto';
+  font-weight: 300;
+  src: url('/static/fonts/Roboto-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Arvo';
+  font-weight: 300;
+  src: url('/static/fonts/Arvo-Regular.ttf') format('truetype');
+}
 
 html
     font-size: 100%

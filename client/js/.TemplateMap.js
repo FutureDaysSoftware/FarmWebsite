@@ -1,6 +1,10 @@
 module.exports={
-	 Footer: require('./views/templates/Footer'),
+	 AboutUs: require('./views/templates/AboutUs'),
+	Footer: require('./views/templates/Footer'),
 	Header: require('./views/templates/Header'),
 	Home: require('./views/templates/Home'),
-	Toast: require('./views/templates/Toast') 
+	OurOfferings: require('./views/templates/OurOfferings'),
+	TheBlog: require('./views/templates/TheBlog'),
+	Toast: require('./views/templates/Toast'),
+	WhereToFindUs: require('./views/templates/WhereToFindUs') 
 }

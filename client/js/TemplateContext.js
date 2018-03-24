@@ -7,7 +7,14 @@ module.exports = {
       currency: 'USD',
       minimumFractionDigits: 2
     } ),
-
+    capitalizeWords(string) {
+        var split = string.split(' ')
+        var label = this.CapitalizeFirstLetter(split[0]) + ' '
+        for (var i = 1; i < split.length; i ++) {
+            label += this.CapitalizeFirstLetter(split[i]) + ' '
+        }
+        return label.trim()
+    },
     GetFormField( datum, value, meta ) {
         const isNested = datum.range === 'List' || typeof datum.range === 'object'
 
