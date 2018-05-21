@@ -258,61 +258,61 @@ textarea:focus {
 .Header div:hover {
   text-decoration: underline;
 }
-div img {
-  height: 15rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 2rem;
-}
-div div {
-  padding-top: 2rem;
+.Home {
   text-align: center;
+  padding-bottom: 2rem;
 }
-div >div {
+.Home >img:nth-child(1) {
+  height: 14rem;
+  padding-top: 3rem;
+}
+.Home >div:nth-child(2) {
   font-family: Arvo;
   font-size: 2rem;
+  padding-top: 3rem;
 }
-.mHeadline {
-  font-family: Arvo;
-  font-size: 30px;
-  padding-top: 30px;
-  text-align: center;
+.Home >div:nth-child(3) {
+  padding-bottom: 2rem;
+  text-transform: uppercase;
 }
-.mSubtitle {
-  font-family: Roboto;
-  text-align: center;
+.Home >div:nth-child(4) {
+  margin-left: 25rem;
+  margin-right: 25rem;
+  padding-bottom: 3rem;
 }
-.mParagraph {
-  font-family: Roboto;
-  margin-left: 30%;
-  margin-right: 30%;
-  text-align: center;
-  width: 40%;
+.Home >div:nth-child(5),
+.Home div:nth-child(6) {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1rem;
 }
-.mRow {
-  text-align: center;
-}
-.mPicHolder {
-  background-color: #c49542;
-  display: inline-block;
+.Home >div:nth-child(5) >div,
+.Home div:nth-child(6) >div {
   position: relative;
-  width: 30%;
 }
-.mPicHolder:hover > .mPic {
-  opacity: 0.5;
+.Home >div:nth-child(5) >div >img,
+.Home div:nth-child(6) >div >img {
+  height: 20rem;
+  position: relative;
+  width: 25rem;
 }
-.mPic {
-  height: 400px;
+.Home >div:nth-child(5) >div >.pic,
+.Home div:nth-child(6) >div >.pic {
+  padding-right: 1rem;
 }
-.mTest {
-  background-color: #231f20;
+.Home >div:nth-child(5) >div >div,
+.Home div:nth-child(6) >div >div {
+  background: #231f20;
   color: #fff;
   font-family: Arvo;
   left: 50%;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 50%;
 }
 .Toast {
   position: fixed;

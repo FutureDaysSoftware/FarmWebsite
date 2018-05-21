@@ -8,12 +8,8 @@ module.exports = {
       minimumFractionDigits: 2
     } ),
     capitalizeWords(string) {
-        var split = string.split(' ')
-        var label = this.CapitalizeFirstLetter(split[0]) + ' '
-        for (var i = 1; i < split.length; i ++) {
-            label += this.CapitalizeFirstLetter(split[i]) + ' '
-        }
-        return label.trim()
+        return string.split(/\s+/)
+        .map(word => this.CapitalizeFirstLetter(word)).join(' ')
     },
     GetFormField( datum, value, meta ) {
         const isNested = datum.range === 'List' || typeof datum.range === 'object'

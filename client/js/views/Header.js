@@ -12,11 +12,8 @@ module.exports = Object.create( Object.assign( {}, require('./__proto__'), {
 
     name: 'Header',
     onNavListClick(event) {
-        this.emit('navigate', `/${ event.target.textContent.split(' ').join('') }`)
-        var headers = event.target.parentElement.children
-        for (var i = 0; i < headers.length; i ++) {
-            headers[i].classList.remove('selected')
-        }
+        this.emit('navigate', `/${ event.target.textContent.replace(/\s+/g, '') }`)
+        var headers = [...event.target.parentElement.children].forEach(header => header.classList.remove('selected'))
         event.target.classList.add('selected')
     },
 

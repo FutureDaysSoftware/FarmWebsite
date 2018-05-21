@@ -1,3 +1,3 @@
 module.exports = function( { model } ) {
-    return `<div> our offerings </div>`
+    return `<div>our offerings</div>`
 }
