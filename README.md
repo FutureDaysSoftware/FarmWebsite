@@ -12,12 +12,6 @@ A website for the [Future Days Farm](InsertLinkToWebsite)
 * [Connect to GitHub with SSH](https://help.github.com/articles/connecting-to-github-with-ssh/)
 * `$ cd ~/FarmWebsite/`
 * `$ npm install`
-* `$ rm ~/FarmWebsite/client/js/views/Toast.js`
-* `$ rm ~/FarmWebsite/client/js/views/templates/Toast.js`
-* `$ rm ~/FarmWebsite/stylus/include/Toast.styl`
-* `$ ln -s ~/FarmWebsite/node_modules/toast/views/Toast.js ~/FarmWebsite/client/js/views/Toast.js`
-* `$ ln -s ~/FarmWebsite/node_modules/toast/views/templates/Toast.js ~/FarmWebsite/client/js/views/templates/Toast.js`
-* `$ ln -s ~/FarmWebsite/node_modules/toast/stylus/Toast.styl ~/FarmWebsite/stylus/include/Toast.styl`
 
 ### Windows
 
