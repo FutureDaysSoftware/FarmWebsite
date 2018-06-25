@@ -100,6 +100,7 @@ module.exports = {
     
     IconDataJs( p ) { return p.name ? `data-js="${p.name}"` : `` },
 
+    /* Eventually put the bucket name in the config file */
     ImageSrc( name ) { return `https://storage.googleapis.com/five-gallon/${name}` },
 
     Range( int ) {
