@@ -11,12 +11,10 @@ module.exports = Object.create( Object.assign( {}, require('./__proto__'), {
     model: require('../models/Header'),
 
     name: 'Header',
-
-    onNavListClick(e) {
-        const target = e.target
-        if( target.tagName !== 'SPAN' ) return
-            
-        this.emit( 'navigate', `/${target.textContent.toLowerCase()}` )
+    onNavListClick(event) {
+        this.emit('navigate', `/${ event.target.textContent.replace(/\s+/g, '') }`)
+        var headers = [...event.target.parentElement.children].forEach(header => header.classList.remove('selected'))
+        event.target.classList.add('selected')
     },
 
     onLogoutClick() {
@@ -42,7 +40,7 @@ module.exports = Object.create( Object.assign( {}, require('./__proto__'), {
 
         return this
     },
-
+    
     template: require('./templates/Header')
 
 } ), { } )

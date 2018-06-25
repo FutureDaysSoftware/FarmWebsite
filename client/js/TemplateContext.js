@@ -7,7 +7,10 @@ module.exports = {
       currency: 'USD',
       minimumFractionDigits: 2
     } ),
-
+    capitalizeWords(string) {
+        return string.split(/\s+/)
+        .map(word => this.CapitalizeFirstLetter(word)).join(' ')
+    },
     GetFormField( datum, value, meta ) {
         const isNested = datum.range === 'List' || typeof datum.range === 'object'
 
@@ -97,7 +100,7 @@ module.exports = {
     
     IconDataJs( p ) { return p.name ? `data-js="${p.name}"` : `` },
 
-    ImageSrc( name ) { return `https://storage.googleapis.com/mega-poetry-9665/${name}` },
+    ImageSrc( name ) { return `https://storage.googleapis.com/five-gallon/${name}` },
 
     Range( int ) {
         return Array.from( Array( int ).keys() )

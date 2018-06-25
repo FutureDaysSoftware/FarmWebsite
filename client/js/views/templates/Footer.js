@@ -1,14 +1,11 @@
-module.exports = function() { return `` +
-`<footer>
-    <div>
-        <span>Contact</span>
-        <span>
-            <a href="mailto:info@futuredays.io">info@futuredays.io</a>
-        </span>
-    </div>
-    <div>
-        <span>Copyright</span>
-        <span>${new Date().getFullYear()} FutureDays Software</span>
-    </div>
-</footer>`
+module.exports = function() { 
+    return `<footer>
+    <div>future days farm</div>
+    <div> 
+        2123 Tiny Road<br/>Town Name, Michigan 33344<br/><br/>
+        <a href="mailto:Info@FutureDaysFarm.com">Info@FutureDaysFarm.com</a><br/>
+        (333) 323-8899
+    </div><br/>
+    <div>Copyright ${new Date().getFullYear()} FutureDays Software</div>
+    </footer>`
 }

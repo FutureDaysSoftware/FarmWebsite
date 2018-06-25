@@ -1,14 +1,4 @@
 module.exports = function( { model } ) {
-const navOptions = model.forEach( datum => `<span>${this.CapitalizeFirstLetter(datum)}</span>` )
-return `<nav>
-    <div>
-        <div>
-            <span>Future</span>
-            <span>Days</span>
-        </div>
-        <div>Software</div>
-    </div>
-    <div data-js="navList">${navOptions}</div>
-</nav>
-`
+    const navOptions = model.map(datum => `<div data-js='navList'>${ this.capitalizeWords(datum) }</div>`).join('')
+    return `<nav>${ navOptions }</nav>`
 }
