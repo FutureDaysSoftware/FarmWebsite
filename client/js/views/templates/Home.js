@@ -8,30 +8,34 @@ module.exports = function( { model } ) {
 		vestibulum felis, ut sodales enim.</div>
 	<div>
 		<div>
-			<img class='pic' data-src='${ this.ImageSrc('Jam.jpg') }' alt='Jam'/>
-			<div class='text'>Nov. 12<br/>Wild Berry Jam</div>
+			<img data-src='${ this.ImageSrc('Jam.jpg') }' alt='Jam'/>
+	 		<div>Nov. 12<br/>Wild Berry Jam</div>
 		</div>
+		<div></div>
 		<div>
-			<img class='pic' data-src='${ this.ImageSrc('Beets.jpg') }' alt="Beets"/> 
-			<div class='text'>Oct. 4<br/>We Got The Beets</div>
+			<img data-src='${ this.ImageSrc('Beets.jpg') }' alt="Beets"/> 
+	 		<div>Oct. 4<br/>We Got The Beets</div>
 		</div>
+		<div></div>
 		<div>
 			<img data-src='${ this.ImageSrc('Squash.jpg') }' alt="Squash"/> 
-			<div class='text'>Oct. 13<br/>It's Time For Squash</div>
+	 		<div>Oct. 13<br/>It's Time For Squash</div>
 		</div>
 	</div>
 	<div>
 		<div>
-			<img class='pic' data-src='${ this.ImageSrc('Vines.jpg') }' alt='Jam'/> 
-			<div class='text'>August. 19<br/>Chicken In The Vine</div>
+			<img data-src='${ this.ImageSrc('Vine.jpg') }' alt='Vines'/> 
+	 		<div>August. 19<br/>Chicken In The Vine</div>
 		</div>
+		<div></div>
 		<div>
-			<img class='pic' data-src='${ this.ImageSrc('Carrots.jpg') }' alt="Beets"/> 
-			<div class='text'>July. 9<br/>Cute Misfit Carrots</div>
+			<img data-src='${ this.ImageSrc('Carrots.jpg') }' alt="Carrots"/> 
+	 		<div>July. 9<br/>Cute Misfit Carrots</div>
 		</div>
+		<div></div>
 		<div>
-			<img data-src='${ this.ImageSrc('Kale.jpg') }' alt="Squash"/> 
-			<div class='text'>June. 7<br/>First Kale Of 2017</div>
+			<img data-src='${ this.ImageSrc('Kale.jpg') }' alt="Kale"/> 
+	 		<div>June. 7<br/>First Kale Of 2017</div>
 		</div>
 	</div>
 	</div>`
