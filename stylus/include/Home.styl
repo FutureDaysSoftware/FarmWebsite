@@ -17,9 +17,11 @@
 		padding-bottom: 3rem
 	>div:nth-child(5), div:nth-child(6)
 		display: flex
-		justify-content: center
+		justify-content: space-evenly
 		padding-bottom: 1rem
-		>div:nth-child(odd)
+		padding-left: 5rem
+		padding-right: 5rem
+		>div
 			background-color: $Mustard
 			position: relative
 			>img
@@ -38,8 +40,6 @@
 				position: absolute
 				top: 50%
 				transform: translate(-50%, -50%)
-		>div:nth-child(odd):hover
+		>div:hover
 			>img
 				opacity: 0.5
-		>div:nth-child(even)
-			padding-right: 1rem

@@ -283,22 +283,24 @@ textarea:focus {
 .Home >div:nth-child(5),
 .Home div:nth-child(6) {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   padding-bottom: 1rem;
+  padding-left: 5rem;
+  padding-right: 5rem;
 }
-.Home >div:nth-child(5) >div:nth-child(odd),
-.Home div:nth-child(6) >div:nth-child(odd) {
+.Home >div:nth-child(5) >div,
+.Home div:nth-child(6) >div {
   background-color: #c49542;
   position: relative;
 }
-.Home >div:nth-child(5) >div:nth-child(odd) >img,
-.Home div:nth-child(6) >div:nth-child(odd) >img {
+.Home >div:nth-child(5) >div >img,
+.Home div:nth-child(6) >div >img {
   height: 20rem;
   position: relative;
   width: 25rem;
 }
-.Home >div:nth-child(5) >div:nth-child(odd) >div,
-.Home div:nth-child(6) >div:nth-child(odd) >div {
+.Home >div:nth-child(5) >div >div,
+.Home div:nth-child(6) >div >div {
   background: #231f20;
   color: #fff;
   font-family: Arvo;
@@ -311,13 +313,9 @@ textarea:focus {
   top: 50%;
   transform: translate(-50%, -50%);
 }
-.Home >div:nth-child(5) >div:nth-child(odd):hover >img,
-.Home div:nth-child(6) >div:nth-child(odd):hover >img {
+.Home >div:nth-child(5) >div:hover >img,
+.Home div:nth-child(6) >div:hover >img {
   opacity: 0.5;
-}
-.Home >div:nth-child(5) >div:nth-child(even),
-.Home div:nth-child(6) >div:nth-child(even) {
-  padding-right: 1rem;
 }
 .Toast {
   position: fixed;
