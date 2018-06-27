@@ -100,7 +100,7 @@ module.exports = {
     
     IconDataJs( p ) { return p.name ? `data-js="${p.name}"` : `` },
 
-    ImageSrc( name ) { return `https://storage.googleapis.com/five-gallon/${name}` },
+    ImageSrc( name ) { return `https://storage.googleapis.com/icelandic-heritage-chickens/${name}` },
 
     Range( int ) {
         return Array.from( Array( int ).keys() )
