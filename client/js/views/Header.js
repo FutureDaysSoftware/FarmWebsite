@@ -12,12 +12,8 @@ module.exports = Object.create( Object.assign( {}, require('./__proto__'), {
 
     name: 'Header',
     onNavListClick(event) {
-        this.emit('navigate', `/${ event.target.textContent.replace(/\s+/g, '') }`)
-        var headers = [...event.target.parentElement.children].forEach(header => header.classList.remove('selected'))
-        
-        /* This doesn't seem to work.  For some reason I need the 'var headers'.  This will produce an error. */
-        // [...event.target.parentElement.children].forEach(header => header.classList.remove('selected'))
-
+        this.emit('navigate', `/${ event.target.textContent.replace(/\s+/g, '') }`);
+        [...event.target.parentElement.children].forEach(header => header.classList.remove('selected'))
         event.target.classList.add('selected')
     },
 
