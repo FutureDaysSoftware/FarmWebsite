@@ -239,7 +239,7 @@ textarea:focus {
 .Header {
   display: flex;
 }
-.Header div {
+.Header li {
   display: inline-block;
   flex: 1;
   font-family: Roboto;
@@ -247,20 +247,22 @@ textarea:focus {
   text-align: center;
   text-transform: uppercase;
 }
-.Header div.selected {
+.Header li.selected {
   color: #c49542;
 }
-.Header div:nth-child(3) {
+.Header li:nth-child(3) {
   color: #c49542;
   font-family: Arvo;
   font-weight: bold;
 }
-.Header div:hover {
+.Header li:hover {
   text-decoration: underline;
 }
 .Home {
   text-align: center;
   padding-bottom: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 .Home >img:nth-child(1) {
   height: 14rem;
@@ -280,41 +282,29 @@ textarea:focus {
   margin-right: 25rem;
   padding-bottom: 3rem;
 }
-.Home >div:nth-child(5),
-.Home div:nth-child(6) {
+.Home >.calendar-images {
   display: flex;
-  justify-content: space-evenly;
-  padding-bottom: 1rem;
-  padding-left: 5rem;
-  padding-right: 5rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-.Home >div:nth-child(5) >div,
-.Home div:nth-child(6) >div {
-  background-color: #c49542;
+.Home >.calendar-images >div {
+  background: #c49542;
+  flex: 1;
+  flex-basis: 25rem;
+  margin: 1rem;
   position: relative;
 }
-.Home >div:nth-child(5) >div >img,
-.Home div:nth-child(6) >div >img {
-  height: 20rem;
-  position: relative;
-  width: 25rem;
-}
-.Home >div:nth-child(5) >div >div,
-.Home div:nth-child(6) >div >div {
+.Home >.calendar-images >div >div {
   background: #231f20;
   color: #fff;
   font-family: Arvo;
   left: 50%;
-  padding-bottom: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 1rem;
+  padding: 1rem;
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
 }
-.Home >div:nth-child(5) >div:hover >img,
-.Home div:nth-child(6) >div:hover >img {
+.Home >.calendar-images >div:hover >img {
   opacity: 0.5;
 }
 .Toast {

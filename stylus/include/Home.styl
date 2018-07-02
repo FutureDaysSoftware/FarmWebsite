@@ -1,6 +1,8 @@
 .Home
 	text-align: center
 	padding-bottom: 2rem
+	padding-left: 2rem
+	padding-right: 2rem
 	>img:nth-child(1)
 		height: 14rem
 		padding-top: 3rem
@@ -15,31 +17,25 @@
 		margin-left: 25rem
 		margin-right: 25rem
 		padding-bottom: 3rem
-	>div:nth-child(5), div:nth-child(6)
+	>.calendar-images
 		display: flex
-		justify-content: space-evenly
-		padding-bottom: 1rem
-		padding-left: 5rem
-		padding-right: 5rem
+		flex-wrap: wrap
+		justify-content: center
 		>div
-			background-color: $Mustard
+			background: $Mustard
+			flex: 1
+			flex-basis: 25rem
+			margin: 1rem
 			position: relative
-			>img
-				height: 20rem
-				position: relative
-				width: 25rem
 			>div
 				background: $Charcoal
 				color: white
 				font-family: Arvo
 				left: 50%
-				padding-bottom: 1rem
-				padding-left: 1rem
-				padding-right: 1rem
-				padding-top: 1rem
+				padding: 1rem
 				position: absolute
 				top: 50%
 				transform: translate(-50%, -50%)
 		>div:hover
 			>img
-				opacity: 0.5
+				opacity 0.5			
