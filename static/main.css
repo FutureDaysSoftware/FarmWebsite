@@ -282,19 +282,19 @@ textarea:focus {
   margin-right: 25rem;
   padding-bottom: 3rem;
 }
-.Home >.calendar-images {
+.Home .calendar-images {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-.Home >.calendar-images >div {
+.Home .calendar-images >div {
   background: #c49542;
   flex: 1;
   flex-basis: 25rem;
   margin: 1rem;
   position: relative;
 }
-.Home >.calendar-images >div >div {
+.Home .calendar-images >div >div {
   background: #231f20;
   color: #fff;
   font-family: Arvo;
@@ -304,7 +304,7 @@ textarea:focus {
   top: 50%;
   transform: translate(-50%, -50%);
 }
-.Home >.calendar-images >div:hover >img {
+.Home .calendar-images >div:hover >img {
   opacity: 0.5;
 }
 .Toast {
