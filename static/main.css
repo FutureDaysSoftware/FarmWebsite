@@ -35,53 +35,31 @@
 }
 .AboutUs >div:nth-child(2) {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  padding-bottom: 3rem;
 }
-.AboutUs >div:nth-child(2) >div:nth-child(2),
-.AboutUs >div:nth-child(2) >div:nth-child(4),
-.AboutUs >div:nth-child(2) >div:nth-child(6) {
-  background-color: #c49542;
+.AboutUs >div:nth-child(2) .calendar-image {
+  background: #c49542;
+  flex: 1;
+  margin: 1rem;
   position: relative;
 }
-.AboutUs >div:nth-child(2) >div:nth-child(2) >img,
-.AboutUs >div:nth-child(2) >div:nth-child(4) >img,
-.AboutUs >div:nth-child(2) >div:nth-child(6) >img {
-  height: 20rem;
-  position: relative;
-  width: 25rem;
-}
-.AboutUs >div:nth-child(2) >div:nth-child(2) >div,
-.AboutUs >div:nth-child(2) >div:nth-child(4) >div,
-.AboutUs >div:nth-child(2) >div:nth-child(6) >div {
+.AboutUs >div:nth-child(2) .calendar-image >div {
   background: #231f20;
   color: #fff;
   font-family: Arvo;
   left: 50%;
-  padding-bottom: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 1rem;
+  padding: 1rem;
   position: absolute;
+  text-align: center;
   top: 50%;
   transform: translate(-50%, -50%);
 }
-.AboutUs >div:nth-child(2) >div:nth-child(2):hover >img,
-.AboutUs >div:nth-child(2) >div:nth-child(4):hover >img,
-.AboutUs >div:nth-child(2) >div:nth-child(6):hover >img {
+.AboutUs >div:nth-child(2) .calendar-image:hover >img {
   opacity: 0.5;
 }
-.AboutUs >div:nth-child(2) >div:nth-child(3),
-.AboutUs >div:nth-child(2) >div:nth-child(5) {
-  padding-right: 1rem;
-}
-.AboutUs >div:nth-child(2) >div:nth-child(1),
-.AboutUs >div:nth-child(2) >div:nth-child(7) {
-  padding-top: 6rem;
-}
-.AboutUs >div:nth-child(2) >div:nth-child(1) >img,
-.AboutUs >div:nth-child(2) >div:nth-child(7) >img {
-  height: 7rem;
+.AboutUs >div:nth-child(2) .arrow {
+  flex: 1;
 }
 @font-face {
   font-family: 'Roboto';

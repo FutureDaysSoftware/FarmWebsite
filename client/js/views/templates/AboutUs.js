@@ -1,4 +1,11 @@
 module.exports = function( { model } ) {
+	const images = model.reduce((memo, image) => {
+	  	const markup = `<div class='${ image.class }'>
+	    	<img data-src='${ this.ImageSrc(image.filename) }' alt='${ image.alt }'/> 
+	    	<div>${ image.date }<br/>${ image.caption }</div>
+	  	</div>`
+	  	return memo + markup
+	}, '')
     return `<div>
     	<div>
 	    	<div><img data-src='${ this.ImageSrc('FarmScene.jpg') }' alt='Farm Scene'/></div>
@@ -12,23 +19,6 @@ module.exports = function( { model } ) {
 	    		<div>Donec ullamcorper nulla non metus auctor fringilla. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. </div>
 	    	</div>
 	    </div>
-    	<div>
-    		<div><img data-src='${ this.ImageSrc('LeftArrow.png') }' alt='Left Arrow'/></div>
-    		<div>
-				<img data-src='${ this.ImageSrc('Jam.jpg') }' alt='Jam'/>
-		 		<div>Nov. 12<br/>Wild Berry Jam</div>
-			</div>
-			<div></div>
-			<div>
-				<img data-src='${ this.ImageSrc('Beets.jpg') }' alt="Beets"/> 
-		 		<div>Oct. 4<br/>We Got The Beets</div>
-			</div>
-			<div></div>
-			<div>
-				<img data-src='${ this.ImageSrc('Squash.jpg') }' alt="Squash"/> 
-		 		<div>Oct. 13<br/>It's Time For Squash</div>
-			</div>
-			<div><img data-src='${ this.ImageSrc('RightArrow.png') }' alt='Right Arrow'/></div>
-    	</div>
+    	<div>${ images }</div>
     </div>`
 }
