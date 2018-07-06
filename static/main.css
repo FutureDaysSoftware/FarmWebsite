@@ -307,6 +307,47 @@ textarea:focus {
 .Home .calendar-images >div:hover >img {
   opacity: 0.5;
 }
+.TheBlog {
+  margin-bottom: 3rem;
+  margin-top: 8rem;
+  text-align: center;
+}
+.TheBlog >h1 {
+  font-family: Arvo;
+  margin-bottom: 3rem;
+}
+.TheBlog >p {
+  margin-right: 33%;
+  margin-left: 33%;
+}
+.TheBlog .calendar-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  margin-top: 3rem;
+}
+.TheBlog .calendar-images >div {
+  background: #c49542;
+  flex: 1;
+  flex-basis: 25rem;
+  margin: 1rem;
+  position: relative;
+}
+.TheBlog .calendar-images >div >div {
+  background: #231f20;
+  color: #fff;
+  font-family: Arvo;
+  left: 50%;
+  padding: 1rem;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.TheBlog .calendar-images >div:hover >img {
+  opacity: 0.5;
+}
 .Toast {
   position: fixed;
   right: 2rem;
