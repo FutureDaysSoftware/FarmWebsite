@@ -16,7 +16,7 @@
   padding-top: 4rem;
 }
 .AboutUs >div:nth-child(1) >div {
-  width: 50%;
+  flex: 1;
 }
 .AboutUs >div:nth-child(1) >div >img {
   padding-left: 3rem;
