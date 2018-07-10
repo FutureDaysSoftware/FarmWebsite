@@ -330,8 +330,7 @@ textarea:focus {
 }
 .TheBlog .calendar-images >div {
   background: #c49542;
-  flex: 1;
-  flex-basis: 25rem;
+  flex-basis: 20rem;
   margin: 1rem;
   position: relative;
 }
