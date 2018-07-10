@@ -7,6 +7,65 @@
 .autocomplete-suggestion { position: relative; padding: 0 .6em; line-height: 23px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 1.02em; color: #333; }
 .autocomplete-suggestion b { font-weight: normal; color: #1f8dd6; }
 .autocomplete-suggestion.selected { background: #f0f0f0; }
+.AboutUs {
+  margin-bottom: 2rem;
+}
+.AboutUs >div:nth-child(1) {
+  display: flex;
+  padding-bottom: 4rem;
+  padding-top: 4rem;
+}
+.AboutUs >div:nth-child(1) >div {
+  flex: 1;
+}
+.AboutUs >div:nth-child(1) >div >img {
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+.AboutUs >div:nth-child(1) >div >p {
+  margin-right: 5rem;
+}
+.AboutUs >div:nth-child(1) >div >h1 {
+  font-family: Arvo;
+  margin-bottom: 2rem;
+}
+.AboutUs >div:nth-child(1) >div >h4 {
+  font-weight: bold;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  text-transform: uppercase;
+}
+.AboutUs >div:nth-child(1) >div:nth-child(2) {
+  padding-top: 3rem;
+}
+.AboutUs >div:nth-child(2) {
+  display: flex;
+  justify-content: center;
+}
+.AboutUs >div:nth-child(2) .calendar-image {
+  background: #c49542;
+  flex: 2;
+  margin: 1rem;
+  position: relative;
+}
+.AboutUs >div:nth-child(2) .calendar-image >div {
+  background: #231f20;
+  color: #fff;
+  font-family: Arvo;
+  left: 50%;
+  padding: 1rem;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.AboutUs >div:nth-child(2) .calendar-image:hover >img {
+  opacity: 0.5;
+}
+.AboutUs >div:nth-child(2) .arrow {
+  flex: 1;
+  margin-top: 6rem;
+}
 @font-face {
   font-family: 'Roboto';
   font-weight: 300;
