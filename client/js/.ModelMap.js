@@ -1,5 +1,6 @@
 module.exports={
-	 Header: require('./models/Header'),
+	 AboutUs: require('./models/AboutUs'),
+	Header: require('./models/Header'),
 	Home: require('./models/Home'),
 	User: require('./models/User') 
 }
