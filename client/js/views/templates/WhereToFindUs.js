@@ -2,10 +2,10 @@ module.exports = function( { model } ) {
 	const markets = model.marketData.reduce((memo, market) => {
 		const markup = `<div>
 		<h3>${ market.name }</h3>
-		<p>${ market.address1 }</p>
-		<p>${ market.address2 }</p>
-		<p>${ market.date }</p>
-		<p>${ market.time }</p>
+		<div>${ market.address1 }</div>
+		<div>${ market.address2 }</div>
+		<div>${ market.date }</div>
+		<div>${ market.time }</div>
 		</div>`
 		return memo + markup
 	}, '')
