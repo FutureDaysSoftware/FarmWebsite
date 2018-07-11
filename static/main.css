@@ -365,6 +365,13 @@ textarea:focus {
 .Home .calendar-images >div:hover >img {
   opacity: 0.5;
 }
+.OurOfferings {
+  padding-top: 5rem;
+  text-align: center;
+}
+.OurOfferings >h1 {
+  font-family: Arvo;
+}
 .TheBlog {
   margin-bottom: 3rem;
   margin-top: 8rem;
