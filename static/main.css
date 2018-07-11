@@ -366,11 +366,36 @@ textarea:focus {
   opacity: 0.5;
 }
 .OurOfferings {
-  padding-top: 5rem;
+  margin-top: 5rem;
   text-align: center;
 }
 .OurOfferings >h1 {
   font-family: Arvo;
+  margin-bottom: 2rem;
+}
+.OurOfferings >p {
+  margin-left: 33%;
+  margin-right: 33%;
+}
+.OurOfferings >div {
+  margin-bottom: 5rem;
+  margin-left: 20rem;
+  margin-right: 20rem;
+  margin-top: 5rem;
+}
+.OurOfferings >div >div {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.OurOfferings >div >div >h3 {
+  font-weight: bold;
+  margin-top: 1rem;
+  text-transform: uppercase;
+}
+.OurOfferings >div >div >div {
+  flex: 1;
+  text-align: left;
 }
 .TheBlog {
   margin-bottom: 3rem;
