@@ -366,6 +366,7 @@ textarea:focus {
   opacity: 0.5;
 }
 .OurOfferings {
+  margin-bottom: 5rem;
   margin-top: 5rem;
   text-align: center;
 }
@@ -374,28 +375,38 @@ textarea:focus {
   margin-bottom: 2rem;
 }
 .OurOfferings >p {
+  margin-bottom: 5rem;
   margin-left: 33%;
   margin-right: 33%;
 }
 .OurOfferings >div {
-  margin-bottom: 5rem;
-  margin-left: 20rem;
-  margin-right: 20rem;
-  margin-top: 5rem;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+.OurOfferings >div >h3 {
+  font-weight: bold;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  text-align: left;
+  text-transform: uppercase;
 }
 .OurOfferings >div >div {
+  margin-bottom: 4rem;
+}
+.OurOfferings >div >div >div {
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
 }
-.OurOfferings >div >div >h3 {
-  font-weight: bold;
-  margin-top: 1rem;
-  text-transform: uppercase;
-}
-.OurOfferings >div >div >div {
+.OurOfferings >div >div >div >div {
   flex: 1;
   text-align: left;
+}
+.OurOfferings >div >div >div >div:nth-child(1) {
+  flex: 2;
+}
+.OurOfferings >div >div >div >div:nth-child(3) {
+  text-align: right;
 }
 .TheBlog {
   margin-bottom: 3rem;
