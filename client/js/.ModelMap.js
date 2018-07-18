@@ -4,5 +4,6 @@ module.exports={
 	Home: require('./models/Home'),
 	OurOfferings: require('./models/OurOfferings'),
 	TheBlog: require('./models/TheBlog'),
-	User: require('./models/User') 
+	User: require('./models/User'),
+	WhereToFindUs: require('./models/WhereToFindUs') 
 }
