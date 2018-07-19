@@ -1,6 +1,6 @@
 module.exports = function( { model } ) {
 	const images = model.reduce((memo, image) => {
-	  	const markup = `<div class='${ image.className }'>
+	  	const markup = `<div data-js='${ image.dataJS }' class='${ image.className }'>
 	    	<img data-src='${ this.ImageSrc(image.filename) }' alt='${ image.alt }'/> 
 	    	<div>${ image.date }<br/>${ image.caption }</div>
 	  	</div>`
