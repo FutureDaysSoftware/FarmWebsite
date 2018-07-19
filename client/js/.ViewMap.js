@@ -1,5 +1,6 @@
 module.exports={
 	 AboutUs: require('./views/AboutUs'),
+	BlogRecipe: require('./views/BlogRecipe'),
 	Footer: require('./views/Footer'),
 	Header: require('./views/Header'),
 	Home: require('./views/Home'),
