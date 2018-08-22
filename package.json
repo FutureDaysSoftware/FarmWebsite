@@ -5,6 +5,7 @@
     "email": "^0.2.6",
     "googleapis": "^22.2.0",
     "graphql": "^0.13.2",
+    "jest": "^23.1.0",
     "jws": "^3.1.4",
     "libpq": "^1.8.5",
     "mongodb": "^2.2.30",
@@ -41,6 +42,7 @@
     "build:watch": "npm run watch:css & npm run watch:js & npm run livereload",
     "livereload": "scripts/liveReload.js",
     "test": "mocha --timeout 5000",
+    "test": "yarn jest --coverage --forceExit --detectOpenHandles",
     "watch:css": "watch 'npm run build:css' stylus --ignoreDotFiles --interval=0.5",
     "watch:js": "watch 'npm run build:js-debug' client/js --ignoreDotFiles --interval=0.5"
   },

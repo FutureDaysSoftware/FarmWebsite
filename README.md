@@ -46,7 +46,7 @@ STORAGE_URL=""
 
 ### Linux
 
-## Testing the Website
+## Running the Website
 
 ### macOS
 * In one terminal window:
@@ -61,6 +61,16 @@ STORAGE_URL=""
 	* `$ cd ~/FarmWebsite/`
 	* `$ yarn appsync-emulator --port 5001`
 * Open a web browser and enter the URL: "http://localhost:9001/"
+
+### Windows
+
+### Linux
+
+## Running Tests
+
+### macOS
+* `$ cd ~/FarmWebsite/`
+* `$ yarn test`
 
 ### Windows
 
