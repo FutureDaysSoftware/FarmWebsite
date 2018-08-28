@@ -1,17 +1,22 @@
 {
   "description": "FutureDays Farm",
   "dependencies": {
+    "@conduitvc/appsync-emulator-serverless": "0.6.4",
+    "aws-appsync": "ConduitVC/aws-appsync",
+    "babel-core": "^6.26.3",
     "bcrypt": "^1.0.2",
     "email": "^0.2.6",
     "googleapis": "^22.2.0",
     "graphql": "^0.13.2",
+    "graphql-tag": "^2.9.2",
     "jest": "^23.1.0",
     "jws": "^3.1.4",
     "libpq": "^1.8.5",
     "mongodb": "^2.2.30",
     "node-env-file": "^0.1.8",
     "pg": "^6.1.2",
-    "pg-copy-streams": "^1.2.0"
+    "pg-copy-streams": "^1.2.0",
+    "zmq": "^2.15.3"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -41,7 +46,6 @@
     "build:js-debug": "scripts/writeAssetMaps.js && browserify client/js/main.js -o static/debug/debug.js -d -t [ babelify --presets [ env ] --ignore [ /node_modules/ ] ] && gzip -c static/debug/debug.js > static/debug/debug.js.gz",
     "build:watch": "npm run watch:css & npm run watch:js & npm run livereload",
     "livereload": "scripts/liveReload.js",
-    "test": "mocha --timeout 5000",
     "test": "yarn jest --coverage --forceExit --detectOpenHandles",
     "watch:css": "watch 'npm run build:css' stylus --ignoreDotFiles --interval=0.5",
     "watch:js": "watch 'npm run build:js-debug' client/js --ignoreDotFiles --interval=0.5"
