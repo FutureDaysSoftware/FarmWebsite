@@ -1,6 +1,5 @@
 const gql = require('graphql-tag');
 const { AWSAppSyncClient } = require('aws-appsync');
-const { PriceRequestStateEnum } = require('../src/entities/PriceRequest');
 const { create, connect, } = require('@conduitvc/appsync-emulator-serverless/tester');
 
 // required by apollo-client
