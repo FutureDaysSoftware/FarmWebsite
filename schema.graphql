@@ -15,6 +15,9 @@ type Query {
 }
 
 type Mutation {
+  addProduct(
+    input: ProductInput!
+  ): Product!
   batchPutQuotes(
     request: QuoteRequestInput!,
     response: QuoteResponseInput!
@@ -76,6 +79,13 @@ type QuoteResponse {
   expires: Float
 }
 
+type Product {
+  name: String!
+  id: ID!
+  createDate: Float!
+  status: String
+}
+
 input QuoteResponseInput {
   offer: String
   expires: Float
@@ -86,4 +96,8 @@ input AttributeFilter {
   expressionName: String!
   expressionNumberValue: Float
   expressionStringValue: String
+}
+
+input ProductInput {
+  name: String!
 }

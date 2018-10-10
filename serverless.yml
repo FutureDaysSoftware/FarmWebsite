@@ -21,6 +21,11 @@ custom:
       userPoolId: us-east-1_27WcML9k8
     region: us-east-2
     mappingTemplates:
+      - dataSource: Product
+        type: Mutation 
+        field: addProduct
+        request: put-request.txt
+        response: result-response.txt
       - dataSource: QuoteRequest
         type: Query
         field: error
@@ -137,6 +142,12 @@ custom:
           lambdaFunctionArn: { Fn::GetAtt: [GraphqlLambdaFunction, Arn] }
           serviceRoleArn: { Fn::GetAtt: [AppSyncLambdaServiceRole, Arn] }
           functionName: graphql
+      - type: AMAZON_DYNAMODB
+        name: Product
+        description: Product description
+        config:
+          tableName: Product-emulator
+          serviceRoleArn: { Fn::GetAtt: [AppSyncDynamoDBServiceRole, Arn] }
 functions:
     graphql:
         handler: handler.graphql
@@ -155,6 +166,19 @@ resources:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
         TableName: QuoteRequest-emulator
+    ProductTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: Product-emulator
     QuoteResponseTable:
       Type: 'AWS::DynamoDB::Table'
       Properties:
