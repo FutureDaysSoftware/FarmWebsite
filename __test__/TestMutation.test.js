@@ -9,13 +9,12 @@ describe('graphql', () => {
     let server;
     let client;
 
-    const addProduct = () => {
-        client.mutate({
+    const addProduct = async() => {
+        const result = await client.mutate({
             mutation: gql`mutation addProduct($input: ProductInput!) {
                 addProduct(input: $input) {
                     id
                     createDate
-                    status
                     name
                 }
             }`,
@@ -25,7 +24,8 @@ describe('graphql', () => {
                 },
             },
         });
-    }
+        return result;
+    };
 
     beforeEach(async() => {
         server = await create({ serverless: `${__dirname}/..` });
@@ -35,8 +35,7 @@ describe('graphql', () => {
     afterEach(async() => server.close());
 
     it('mutate', async() => {
-        const { data: { addProduct }, } = await addProduct();
+        const result = await addProduct();
+        expect(result.data.addProduct.name).toEqual('Cheese');
     });
-
-    expect(addProduct.name.toEqual('Cheese'));
 });
