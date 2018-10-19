@@ -1,4 +1,23 @@
+const { AWSAppSyncClient } = require('aws-appsync')
+
+import { AUTH_TYPE } from 'aws-appsync/lib/link/auth-link';
+import { string } from '@conduitvc/appsync-emulator-serverless/testJWT';
+
+const apolloClient = new AWSAppSyncClient({
+    url: "http://localhost:5001/graphql",
+    region: 'us-fake-1',
+    disableOffline: true,
+    auth: {
+        type: AUTH_TYPE.AMAZON_COGNITO_USER_POOLS,
+        jwtToken: () => string,
+    },
+});
+
 module.exports = Object.assign( { }, require('../../../lib/MyObject'), require('events').EventEmitter.prototype, {
+
+    gql: require('graphql-tag'),
+
+    apolloClient,
 
     $( el, selector ) { return Array.from( el.querySelectorAll( selector ) ) },
 
