@@ -21,6 +21,7 @@ describe('graphql', () => {
             variables: {
                 input: {
                     name: 'Cheese',
+                    quantity: 1
                 },
             },
         });
