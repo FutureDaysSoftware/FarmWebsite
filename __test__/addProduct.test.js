@@ -5,7 +5,7 @@ const { create, connect, } = require('@conduitvc/appsync-emulator-serverless/tes
 // required by apollo-client
 global.fetch = require('node-fetch');
 
-describe('graphql', () => {
+describe('add product', () => {
     let server;
     let client;
 
@@ -35,7 +35,7 @@ describe('graphql', () => {
 
     afterEach(async() => server.close());
 
-    it('mutate', async() => {
+    it('adds a product', async() => {
         const result = await addProduct();
         expect(result.data.addProduct.name).toEqual('Cheese');
     });

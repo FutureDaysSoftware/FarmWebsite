@@ -2,7 +2,6 @@ service: appsync-bootstrap-test
 provider:
   name: aws
 custom:
-  accountId: 229055845648
   appSync:
     mappingTemplates:
       - dataSource: Product
@@ -15,7 +14,7 @@ custom:
       - type: AMAZON_DYNAMODB
         name: Product
         config:
-          tableName: Product-emulator
+          tableName: Product
 resources:
   Resources:
     ProductTable:
@@ -30,4 +29,4 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-        TableName: Product-emulator
+        TableName: Product

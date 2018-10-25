@@ -1,18 +1,17 @@
 {
   "description": "FutureDays Farm",
   "dependencies": {
-    "@conduitvc/appsync-emulator-serverless": "0.6.4",
-    "aws-appsync": "ConduitVC/aws-appsync",
-    "babel-core": "^6.26.3",
     "graphql": "0.13.0",
     "graphql-tag": "^2.9.2",
     "jest": "^23.1.0",
     "jws": "^3.1.4",
     "node-env-file": "^0.1.8",
-    "pg": "^6.1.2",
-    "zmq": "^2.14.0"
+    "pg": "^6.1.2"
   },
   "devDependencies": {
+    "@conduitvc/appsync-emulator-serverless": "^0.7.3",
+    "aws-appsync": "ConduitVC/aws-appsync",
+    "babel-core": "^6.26.3",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
@@ -21,7 +20,7 @@
     "livereload": "git://github.com/cbaron/node-livereload.git#master",
     "smoothscroll-polyfill": "^0.4.0",
     "stylus": "0.54.5",
-    "toast": "git+ssh://git@github.com/FutureDaysSoftware/Toast.git#v0.0.3"
+    "toast": "https://github.com/FutureDaysSoftware/Toast.git#v0.0.3"
   },
   "license": "MIT",
   "name": "OurWebsite",

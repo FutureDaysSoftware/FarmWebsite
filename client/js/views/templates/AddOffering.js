@@ -1,16 +1,13 @@
 module.exports = function({ model }) {
 	return `<div>
 	<form>
-	  Item Name:<br>
-	  <input data-js="name" type="text">
-	  <br>
-	  Item Quantity:<br>
-	  <input data-js="quantity" type="text">
-	  <br>
-	  Item Price:<br>
-	  <input type="text">
-	  <br><br>
-	  <input data-js="submit" type="button" value="Submit">
+		<div>Item Name:</div>
+		<div><input data-js="name" type="text"></div>
+		<div>Item Quantity:</div>
+		<div><input data-js="quantity" type="text"></div>
+		<div>Item Price:</div>
+		<div><input type="text"></div>
+		<div><input data-js="submit" type="button" value="Submit"></div>
 	</form> 
 	</div>`
 }
