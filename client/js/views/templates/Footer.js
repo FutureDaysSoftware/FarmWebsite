@@ -1,4 +1,4 @@
-module.exports = function() { 
+module.exports = function() {
     return `<footer>
     <div>future days farm</div>
     <div> 

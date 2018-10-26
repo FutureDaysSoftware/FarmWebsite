@@ -1,14 +1,16 @@
-module.exports = function( { model } ) {
-	const images = model.reduce((memo, image) => {
-	  	const markup = `<div class='${ image.className }'>
-	    	<img data-src='${ this.ImageSrc(image.filename) }' alt='${ image.alt }'/> 
-	    	<div>${ image.date }<br/>${ image.caption }</div>
+module.exports = function({ model }) {
+    const images = model.reduce((memo, image) => {
+        const markup = `<div class='${image.className}'>
+	    	<img data-src='${this.ImageSrc(image.filename)}' alt='${image.alt}'/> 
+	    	<div>${image.date}<br/>${image.caption}</div>
 	  	</div>`
-	  	return memo + markup
-	}, '')
+        return memo + markup
+    }, '')
     return `<div>
     	<div>
-	    	<div><img data-src='${ this.ImageSrc('FarmScene.jpg') }' alt='Farm Scene'/></div>
+	    	<div><img data-src='${this.ImageSrc(
+                'FarmScene.jpg'
+            )}' alt='Farm Scene'/></div>
 	    	<div>
 	    		<h1>Headline for About Us and the Farm</h1>
 	    		<p>Praesent laoreet ornare ligula, ac accumsan turpis sagittis at. Integer auctor egestas eleifend. Etiam luctus mattis justo, vitae fermentum libero euismod lacinia. Proin at consequat risus. Praesent sollicitudin vestibulum felis, ut sodales enim.</p>
@@ -19,6 +21,6 @@ module.exports = function( { model } ) {
 	    		<p>Donec ullamcorper nulla non metus auctor fringilla. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. </p>
 	    	</div>
 	    </div>
-    	<div>${ images }</div>
+    	<div>${images}</div>
     </div>`
 }

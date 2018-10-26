@@ -20,6 +20,7 @@
     "eslint": "^5.7.0",
     "livereload": "git://github.com/cbaron/node-livereload.git#master",
     "pre-commit": "^1.2.2",
+    "prettier": "1.14.3",
     "smoothscroll-polyfill": "^0.4.0",
     "stylus": "0.54.5",
     "toast": "https://github.com/FutureDaysSoftware/Toast.git#v0.0.3"
@@ -39,7 +40,7 @@
     "build:js-debug": "scripts/writeAssetMaps.js && browserify client/js/main.js -o static/debug/debug.js -d -t [ babelify --presets [ env ] --ignore [ /node_modules/ ] ] && gzip -c static/debug/debug.js > static/debug/debug.js.gz",
     "build:watch": "npm run watch:css & npm run watch:js & npm run livereload",
     "livereload": "scripts/liveReload.js",
-    "test": "yarn jest --coverage --forceExit --detectOpenHandles",
+    "test": "prettier --config .prettierrc.json --write './**/*.js' & eslint . & yarn jest --coverage --forceExit --detectOpenHandles",
     "watch:css": "watch 'npm run build:css' stylus --ignoreDotFiles --interval=0.5",
     "watch:js": "watch 'npm run build:js-debug' client/js --ignoreDotFiles --interval=0.5"
   },
