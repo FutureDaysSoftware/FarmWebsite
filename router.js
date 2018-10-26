@@ -27,7 +27,6 @@ module.exports = Object.create(
             }
 
             request.setEncoding('utf8')
-
             ;(path[0] === 'static'
                 ? this.static(request, response, path)
                 : /application\/json/.test(request.headers.accept) ||

@@ -71,16 +71,14 @@ module.exports = Object.create(
         PUT(resource, id) {
             return this.getDb()
                 .then(db =>
-                    db
-                        .collection(resource.path[0])
-                        .replaceOne(
-                            {
-                                _id: new this.Mongo.ObjectID(
-                                    id || resource.path[1]
-                                ),
-                            },
-                            this.transform(resource.path[0], resource.body)
-                        )
+                    db.collection(resource.path[0]).replaceOne(
+                        {
+                            _id: new this.Mongo.ObjectID(
+                                id || resource.path[1]
+                            ),
+                        },
+                        this.transform(resource.path[0], resource.body)
+                    )
                 )
                 .then(result =>
                     Promise.resolve([
