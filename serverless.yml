@@ -1,0 +1,32 @@
+service: appsync-bootstrap-test
+provider:
+  name: aws
+custom:
+  appSync:
+    mappingTemplates:
+      - dataSource: Product
+        type: Mutation 
+        field: addProduct
+        request: put-request.txt
+        response: result-response.txt
+    serviceRole: "AppSyncServiceRole"
+    dataSources:
+      - type: AMAZON_DYNAMODB
+        name: Product
+        config:
+          tableName: Product
+resources:
+  Resources:
+    ProductTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: Product

@@ -66,6 +66,11 @@
   flex: 1;
   margin-top: 6rem;
 }
+.AddOffering {
+  padding-bottom: 5rem;
+  padding-top: 5rem;
+  text-align: center;
+}
 @font-face {
   font-family: 'Roboto';
   font-weight: 300;

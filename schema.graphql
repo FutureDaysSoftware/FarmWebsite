@@ -1,0 +1,25 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  error: Boolean
+}
+
+type Mutation {
+  addProduct(input: ProductInput!): Product!
+}
+
+type Product {
+  name: String!
+  id: ID!
+  createDate: Float!
+  status: String
+  quantity: Int!
+}
+
+input ProductInput {
+  name: String!
+  quantity: Int!
+}

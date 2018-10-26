@@ -2,7 +2,7 @@ module.exports = Object.create( Object.assign( {}, require('./lib/MyObject'), {
 
     Fs: require('fs'),
 
-    Mongo: require('./dal/Mongo'),
+    // Mongo: require('./dal/Mongo'),
 
     Path: require('path'),
     
@@ -45,14 +45,11 @@ module.exports = Object.create( Object.assign( {}, require('./lib/MyObject'), {
     },
 
     async initialize() {
-        const dals = [ 'Mongo' ]
+        const dals = []
 
         this.jsonRoutes = {}
 
-        let [ a, [ files ] ] = await Promise.all(
-            dals.map( dal => this[ dal ].initialize(this.jsonRoutes) )
-            .concat( this.P( this.Fs.readdir, [ `${__dirname}/resources` ] ) )
-        )
+        let [ files ] = await this.P( this.Fs.readdir, [ `${__dirname}/resources` ] )
         
         const fileHash =
             files.filter( name => !/^[\._]/.test(name) && /\.js/.test(name) )
