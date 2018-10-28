@@ -1,11 +1,11 @@
 module.exports = Object.create(
-    Object.assign({}, require('../../lib/MyObject'), {
+    Object.assign({}, require("../../lib/MyObject"), {
         Request: {
             constructor(data) {
                 let req = new XMLHttpRequest()
 
                 if (data.onProgress)
-                    req.addEventListener('progress', e =>
+                    req.addEventListener("progress", e =>
                         data.onProgress(
                             e.lengthComputable
                                 ? Math.floor((e.loaded / e.total) * 100)
@@ -24,14 +24,14 @@ module.exports = Object.create(
                             : resolve(JSON.parse(this.response))
                     }
 
-                    data.method = data.method || 'get'
+                    data.method = data.method || "get"
 
                     const path =
-                        `/${data.resource}` + (data.id ? `/${data.id}` : '')
-                    if (data.method === 'get' || data.method === 'options') {
+                        `/${data.resource}` + (data.id ? `/${data.id}` : "")
+                    if (data.method === "get" || data.method === "options") {
                         let qs = data.qs
                             ? `?${window.encodeURIComponent(data.qs)}`
-                            : ''
+                            : ""
                         req.open(data.method, `${path}${qs}`)
                         this.setHeaders(req, data.headers)
                         req.send(null)
@@ -41,20 +41,20 @@ module.exports = Object.create(
                         req.send(data.data || null)
                     }
 
-                    if (data.onProgress) data.onProgress('sent')
+                    if (data.onProgress) data.onProgress("sent")
                 })
             },
 
             setHeaders(req, headers = {}) {
                 req.setRequestHeader(
-                    'Accept',
-                    headers.accept || 'application/json'
+                    "Accept",
+                    headers.accept || "application/json"
                 )
                 req.setRequestHeader(
-                    'Content-Type',
-                    headers.contentType || 'text/plain'
+                    "Content-Type",
+                    headers.contentType || "text/plain"
                 )
-            },
+            }
         },
 
         _factory(data) {
@@ -74,7 +74,7 @@ module.exports = Object.create(
             }
 
             return this._factory.bind(this)
-        },
+        }
     }),
     {}
 ).constructor()

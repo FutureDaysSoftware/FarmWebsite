@@ -19,8 +19,8 @@ module.exports = p => `
  
         ${
             p.isDev
-                ? '<script src="/static/debug/debug.js.gz"></script>'
-                : '<script src="/static/bundle.js.gz"></script>'
+                ? "<script src='/static/debug/debug.js.gz'></script>"
+                : "<script src='/static/bundle.js.gz'></script>"
         }      
 
         <title>${p.title}</title>
@@ -36,7 +36,7 @@ module.exports = p => `
             ? `<script src="//${
                   process.env.DOMAIN
               }:35729/livereload.js?snipver=1"/></script>`
-            : ''
+            : ""
     }
 
 </html>

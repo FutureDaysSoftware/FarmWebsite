@@ -1,16 +1,16 @@
 module.exports = Object.create(
-    Object.assign({}, require('../lib/MyObject'), {
-        Client: require('mongodb').MongoClient,
+    Object.assign({}, require("../lib/MyObject"), {
+        Client: require("mongodb").MongoClient,
 
-        Fs: require('fs'),
+        Fs: require("fs"),
 
-        Mongo: require('mongodb'),
+        Mongo: require("mongodb"),
 
         ObjectId(id) {
             return new this.Mongo.ObjectID(id)
         },
 
-        SuperModel: require('../models/__proto__'),
+        SuperModel: require("../models/__proto__"),
 
         DELETE(resource, id) {
             return this.getDb()
@@ -27,7 +27,7 @@ module.exports = Object.create(
                 return this.handleSingleDocument(resource)
             if (resource.query.countOnly) return this.handleCountOnly(resource)
 
-            const cursorMethods = ['skip', 'limit', 'sort'].reduce(
+            const cursorMethods = ["skip", "limit", "sort"].reduce(
                 (memo, attr) => {
                     if (resource.query[attr] !== undefined) {
                         memo[attr] = resource.query[attr]
@@ -63,7 +63,7 @@ module.exports = Object.create(
                         Object.assign(
                             { _id: result.insertedIds[0] },
                             resource.body
-                        ),
+                        )
                     ])
                 )
         },
@@ -73,9 +73,7 @@ module.exports = Object.create(
                 .then(db =>
                     db.collection(resource.path[0]).replaceOne(
                         {
-                            _id: new this.Mongo.ObjectID(
-                                id || resource.path[1]
-                            ),
+                            _id: new this.Mongo.ObjectID(id || resource.path[1])
                         },
                         this.transform(resource.path[0], resource.body)
                     )
@@ -85,13 +83,13 @@ module.exports = Object.create(
                         Object.assign(
                             { _id: id || resource.path[1] },
                             resource.body
-                        ),
+                        )
                     ])
                 )
         },
 
         addCollection(name) {
-            this.routes[name] = '__proto__'
+            this.routes[name] = "__proto__"
             this.objectNames.push(name)
             this.model[name] = this.SuperModel.create()
         },
@@ -149,7 +147,7 @@ module.exports = Object.create(
         initialize(routes) {
             this.routes = routes
             return this.forEach(
-                db => db.listCollections({ name: { $ne: 'system.indexes' } }),
+                db => db.listCollections({ name: { $ne: "system.indexes" } }),
                 this.cacheCollection,
                 this
             ).then(() => {
@@ -161,7 +159,7 @@ module.exports = Object.create(
                     this.Fs
                 ).then(([files]) => {
                     files.forEach(filename => {
-                        const name = filename.replace('.js', '')
+                        const name = filename.replace(".js", "")
                         if (this.objectNames.includes(name)) {
                             this.model[
                                 name
@@ -199,7 +197,7 @@ module.exports = Object.create(
             })
 
             return document
-        },
+        }
     }),
     { model: { value: {} } }
 )

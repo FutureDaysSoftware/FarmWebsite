@@ -1,9 +1,9 @@
 module.exports = Object.assign(
     {},
-    require('../../../lib/Model'),
-    require('events').EventEmitter.prototype,
+    require("../../../lib/Model"),
+    require("events").EventEmitter.prototype,
     {
-        Xhr: require('../Xhr'),
+        Xhr: require("../Xhr"),
 
         add(datum) {
             this.data.push(datum)
@@ -16,9 +16,9 @@ module.exports = Object.assign(
         delete() {
             const keyValue = this.data[this.meta.key]
             return this.Xhr({
-                method: 'DELETE',
+                method: "DELETE",
                 resource: this.resource,
-                id: keyValue,
+                id: keyValue
             }).then(() => {
                 const key = this.meta.key
 
@@ -56,10 +56,10 @@ module.exports = Object.assign(
                 Object.assign(opts.query, this.pagination)
 
             return this.Xhr({
-                method: opts.method || 'get',
+                method: opts.method || "get",
                 resource: this.resource,
                 headers: this.headers || {},
-                qs: opts.query ? JSON.stringify(opts.query) : undefined,
+                qs: opts.query ? JSON.stringify(opts.query) : undefined
             }).then(response => {
                 if (Array.isArray(this.data)) {
                     this.data = this.data.concat(
@@ -75,7 +75,7 @@ module.exports = Object.assign(
                     if (opts.storeBy) this._store()
                 }
 
-                this.emit('got')
+                this.emit("got")
 
                 return Promise.resolve(response)
             })
@@ -83,10 +83,10 @@ module.exports = Object.assign(
 
         getCount() {
             return this.Xhr({
-                method: 'get',
+                method: "get",
                 resource: this.resource,
                 headers: this.headers || {},
-                qs: JSON.stringify({ countOnly: true }),
+                qs: JSON.stringify({ countOnly: true })
             }).then(({ result }) => {
                 this.meta.count = result
                 return Promise.resolve(result)
@@ -99,11 +99,11 @@ module.exports = Object.assign(
 
         patch(id, data) {
             return this.Xhr({
-                method: 'patch',
+                method: "patch",
                 id,
                 resource: this.resource,
                 headers: this.headers || {},
-                data: JSON.stringify(data || this.data),
+                data: JSON.stringify(data || this.data)
             }).then(response => {
                 if (Array.isArray(this.data)) {
                     this.data = this.data
@@ -129,11 +129,11 @@ module.exports = Object.assign(
 
         put(id, data) {
             return this.Xhr({
-                method: 'put',
+                method: "put",
                 id,
                 resource: this.resource,
                 headers: this.headers || {},
-                data: JSON.stringify(data),
+                data: JSON.stringify(data)
             }).then(response => {
                 if (Array.isArray(this.data)) {
                 } else {
@@ -146,10 +146,10 @@ module.exports = Object.assign(
 
         post(model) {
             return this.Xhr({
-                method: 'post',
+                method: "post",
                 resource: this.resource,
                 headers: this.headers || {},
-                data: JSON.stringify(model || this.data),
+                data: JSON.stringify(model || this.data)
             }).then(response => {
                 if (Array.isArray(this.data)) {
                     this.data = this.data
@@ -191,12 +191,12 @@ module.exports = Object.assign(
 
                 if (attribute === undefined || !attribute.validate) {
                     this.data[name] = val
-                        ? typeof val === 'string'
+                        ? typeof val === "string"
                             ? val.trim()
                             : val
                         : undefined
                 } else if (valid && !this.validateDatum(attribute, val)) {
-                    this.emit('validationError', attribute)
+                    this.emit("validationError", attribute)
                     valid = false
                 } else if (this.validateDatum(attribute, val)) {
                     this.data[name] = val.trim()
@@ -208,6 +208,6 @@ module.exports = Object.assign(
 
         validateDatum(attr, val) {
             return attr.validate.call(this, val.trim())
-        },
+        }
     }
 )

@@ -6,6 +6,6 @@ module.exports = function({ model }) {
                     datum.label
                 }</li>`
         )
-        .join('')
+        .join("")
     return `<nav>${navOptions}</nav>`
 }

@@ -1,13 +1,13 @@
-require('node-env-file')(__dirname + '/.env')
+require("node-env-file")(__dirname + "/.env")
 
-const Router = require('./router'),
+const Router = require("./router"),
     httpPort = process.env.HTTP_PORT
 
 module.exports = (async () => {
     try {
         await Router.initialize()
 
-        require('http')
+        require("http")
             .createServer(Router.handler.bind(Router))
             .listen(httpPort)
 

@@ -5,11 +5,11 @@ module.exports = function({ model }) {
 	    	<div>${image.date}<br/>${image.caption}</div>
 	  	</div>`
         return memo + markup
-    }, '')
+    }, "")
     return `<div>
     	<div>
 	    	<div><img data-src='${this.ImageSrc(
-                'FarmScene.jpg'
+                "FarmScene.jpg"
             )}' alt='Farm Scene'/></div>
 	    	<div>
 	    		<h1>Headline for About Us and the Farm</h1>

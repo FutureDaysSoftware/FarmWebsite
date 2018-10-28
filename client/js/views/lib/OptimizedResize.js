@@ -2,7 +2,7 @@ module.exports = Object.create(
     {
         add(callback) {
             if (!this.callbacks.length)
-                window.addEventListener('resize', this.onResize.bind(this))
+                window.addEventListener("resize", this.onResize.bind(this))
             this.callbacks.push(callback)
         },
 
@@ -19,10 +19,10 @@ module.exports = Object.create(
         runCallbacks() {
             this.callbacks = this.callbacks.filter(callback => callback())
             this.running = false
-        },
+        }
     },
     {
         callbacks: { writable: true, value: [] },
-        running: { writable: true, value: false },
+        running: { writable: true, value: false }
     }
 )

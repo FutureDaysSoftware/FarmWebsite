@@ -1,11 +1,11 @@
-module.exports = Object.assign({}, require('./__proto__'), {
+module.exports = Object.assign({}, require("./__proto__"), {
     events: {
-        submit: 'click',
+        submit: "click"
     },
 
     async onSubmitClick(e) {
         e.preventDefault()
-        if (this.els.name.value.trim() == '') {
+        if (this.els.name.value.trim() == "") {
             return
         }
         const mutation = this
@@ -23,18 +23,18 @@ module.exports = Object.assign({}, require('./__proto__'), {
                 variables: {
                     input: {
                         name: this.els.name.value,
-                        quantity: this.els.quantity.value,
+                        quantity: this.els.quantity.value
                     },
                     input2: {
-                        name: 'Test',
-                        quantity: 1,
-                    },
-                },
+                        name: "Test",
+                        quantity: 1
+                    }
+                }
             })
             console.log(result)
         } catch (e) {
             console.log(e)
-            this.Toast.showMessage('error', '...')
+            this.Toast.showMessage("error", "...")
         }
-    },
+    }
 })

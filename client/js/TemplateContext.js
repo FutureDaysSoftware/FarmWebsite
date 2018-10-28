@@ -2,33 +2,33 @@ module.exports = {
     CapitalizeFirstLetter: string =>
         string.charAt(0).toUpperCase() + string.slice(1),
 
-    Currency: new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 2,
+    Currency: new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 2
     }),
     capitalizeWords(string) {
         return string
             .split(/\s+/)
             .map(word => this.CapitalizeFirstLetter(word))
-            .join(' ')
+            .join(" ")
     },
     GetFormField(datum, value, meta) {
         const isNested =
-            datum.range === 'List' || typeof datum.range === 'object'
+            datum.range === "List" || typeof datum.range === "object"
 
         const image =
-            datum.range === 'ImageUrl'
+            datum.range === "ImageUrl"
                 ? `<div><button class="btn" data-js="previewBtn" type="button">Preview</button><img data-src="${this.ImageSrc(
                       value
                   )}" /></div>`
-                : ``
+                : ""
 
         const options =
-            datum.range === 'Boolean'
+            datum.range === "Boolean"
                 ? [
-                      { label: 'True', name: 'true' },
-                      { label: 'False', name: 'false' },
+                      { label: "True", name: "true" },
+                      { label: "False", name: "false" }
                   ]
                 : datum.metadata
                     ? datum.metadata.options
@@ -38,18 +38,18 @@ module.exports = {
             datum.metadata && datum.metadata.icon
                 ? this.GetIcon(datum.metadata.icon)
                 : options
-                    ? this.GetIcon('caret-down')
-                    : ``
+                    ? this.GetIcon("caret-down")
+                    : ""
 
         const label =
             isNested || (datum.fk || (datum.label && !meta.noLabel))
                 ? `<label>${datum.fk || datum.label}</label>`
-                : ``
+                : ""
 
-        value = value === undefined ? '' : value
+        value = value === undefined ? "" : value
 
         if (options) {
-            if (typeof options === 'function') {
+            if (typeof options === "function") {
                 options()
                 return this.GetSelect(datum, value, [], icon, label)
             } else if (Array.isArray(options))
@@ -58,39 +58,39 @@ module.exports = {
 
         const prompt = datum.prompt
             ? `<div class="prompt">${datum.prompt}</div>`
-            : ``
+            : ""
 
         const input = datum.fk
             ? `<div data-view="typeAhead" data-name="${datum.fk}"></div>`
-            : datum.range === 'Text'
+            : datum.range === "Text"
                 ? `<textarea data-js="${
                       datum.name
                   }" placeholder="${datum.label ||
-                      ''}" rows="3">${value}</textarea>`
-                : datum.range === 'List' ||
-                  datum.range === 'View' ||
-                  typeof datum.range === 'object'
+                      ""}" rows="3">${value}</textarea>`
+                : datum.range === "List" ||
+                  datum.range === "View" ||
+                  typeof datum.range === "object"
                     ? `<div data-js="${datum.name}" data-name="${
                           datum.name
                       }"></div>`
                     : `<input type="${
                           this.RangeToInputType[datum.range]
                       }" data-js="${datum.name}" placeholder="${datum.label ||
-                          ''}" value="${value}" />`
+                          ""}" value="${value}" />`
 
         return (
-            `` +
-            `<div class="form-group ${isNested ? 'nested' : ''}">
-            ${label}
-            ${prompt}
-            ${input} 
-            ${icon}
-        </div>`
+            "" +
+            `<div class="form-group ${isNested ? "nested" : ""}">
+			${label}
+			${prompt}
+			${input} 
+			${icon}
+		</div>`
         )
     },
 
     GetFormFields(data, model = {}, meta) {
-        if (!data) return ``
+        if (!data) return ""
 
         return data
             .filter(
@@ -100,7 +100,7 @@ module.exports = {
             .map(datum =>
                 this.GetFormField(datum, model && model[datum.name], meta)
             )
-            .join('')
+            .join("")
     },
 
     GetIcon(name, opts = { IconDataJs: this.IconDataJs }) {
@@ -112,63 +112,63 @@ module.exports = {
             .map(item => {
                 const attr = opts.dataAttr
                     ? `data-${opts.dataAttr}="${item[opts.dataAttr]}"`
-                    : ``
+                    : ""
                 return `<li ${attr}>${item.label || item}</li>`
             })
-            .join('')
+            .join("")
     },
 
-    GetSelect(datum, selectedValue, optionsData, icon, label = ``) {
+    GetSelect(datum, selectedValue, optionsData, icon, label = "") {
         if (
-            typeof selectedValue === 'boolean' ||
-            typeof selectedValue === 'number'
+            typeof selectedValue === "boolean" ||
+            typeof selectedValue === "number"
         )
             selectedValue = selectedValue.toString()
 
         const options = optionsData.length
             ? this.GetSelectOptions(optionsData, selectedValue, {
-                  valueAttr: 'name',
+                  valueAttr: "name"
               })
-            : ``
+            : ""
 
         return (
-            `` +
+            "" +
             `<div class="form-group">
-            ${label}
-            <select data-js="${datum.name}">
-                <option disabled ${!selectedValue ? `selected` : ``} value>${
+			${label}
+			<select data-js="${datum.name}">
+				<option disabled ${!selectedValue ? "selected" : ""} value>${
                 datum.label
             }</option>
-                ${options}
-            </select>
-            ${icon}
-        </div>`
+				${options}
+			</select>
+			${icon}
+		</div>`
         )
     },
 
     GetSelectOptions(
         options = [],
         selectedValue,
-        opts = { valueAttr: 'value' }
+        opts = { valueAttr: "value" }
     ) {
         return options
             .map(
                 option =>
                     `<option ${
                         selectedValue === option[opts.valueAttr]
-                            ? `selected`
-                            : ``
+                            ? "selected"
+                            : ""
                     } value="${option[opts.valueAttr]}">${
                         option.label
                     }</option>`
             )
-            .join('')
+            .join("")
     },
 
     //Icons: require('./.IconMap'),
 
     IconDataJs(p) {
-        return p.name ? `data-js="${p.name}"` : ``
+        return p.name ? `data-js="${p.name}"` : ""
     },
 
     /* Eventually put the bucket name in the config file */
@@ -181,8 +181,8 @@ module.exports = {
     },
 
     RangeToInputType: {
-        Email: 'email',
-        Password: 'password',
-        String: 'text',
-    },
+        Email: "email",
+        Password: "password",
+        String: "text"
+    }
 }

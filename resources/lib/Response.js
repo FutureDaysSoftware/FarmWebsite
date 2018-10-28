@@ -15,7 +15,7 @@ module.exports = Object.create(
                         ? rows.length
                             ? rows[0]
                             : {}
-                        : rows,
+                        : rows
             })
         },
 
@@ -29,7 +29,7 @@ module.exports = Object.create(
 
         PUT(resource, rows) {
             resource.respond({ body: rows[0] })
-        },
+        }
     },
     {}
 )

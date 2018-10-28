@@ -1,44 +1,44 @@
 module.exports = Object.create(
-    Object.assign({}, require('./lib/MyObject'), {
-        Fs: require('fs'),
+    Object.assign({}, require("./lib/MyObject"), {
+        Fs: require("fs"),
 
         // Mongo: require('./dal/Mongo'),
 
-        Path: require('path'),
+        Path: require("path"),
 
         handler(request, response) {
-            const path = request.url.split('/').slice(1)
+            const path = request.url.split("/").slice(1)
 
             //if( /favicon/.test( path.join('') ) ) { response.writeHead( 301, { 'Location': `${process.env.STORAGE_URL}tree.png` } ); return response.end("") }
-            if (/favicon/.test(path.join(''))) {
+            if (/favicon/.test(path.join(""))) {
                 response.writeHead(301, {
-                    Location: `https://alleganwaizard.com/favicon.ico`,
+                    Location: "https://alleganwaizard.com/favicon.ico"
                 })
-                return response.end('')
+                return response.end("")
             }
 
             let lastPath = path[path.length - 1],
-                queryIndex = lastPath.indexOf('?'),
-                qs = ''
+                queryIndex = lastPath.indexOf("?"),
+                qs = ""
 
             if (queryIndex !== -1) {
                 qs = lastPath.slice(queryIndex + 1)
                 path[path.length - 1] = lastPath.slice(0, queryIndex)
             }
 
-            request.setEncoding('utf8')
-            ;(path[0] === 'static'
+            request.setEncoding("utf8")
+            ;(path[0] === "static"
                 ? this.static(request, response, path)
                 : /application\/json/.test(request.headers.accept) ||
-                  (request.method === 'GET' && path[0] === 'report')
+                  (request.method === "GET" && path[0] === "report")
                     ? this.rest(request, response, path, qs)
                     : this.html(request, response)
             ).catch(e => {
-                if (e.message !== 'Handled') {
+                if (e.message !== "Handled") {
                     this.Error(e)
                     response.writeHead(500, {
-                        'Content-Length': 0,
-                        'Content-Type': 'text/plain',
+                        "Content-Length": 0,
+                        "Content-Type": "text/plain"
                     })
                     response.end()
                 }
@@ -48,10 +48,10 @@ module.exports = Object.create(
         html(request, response) {
             response.writeHead(200)
             response.end(
-                require('./templates/page')({
+                require("./templates/page")({
                     isDev: this.isDev,
                     request,
-                    title: process.env.NAME,
+                    title: process.env.NAME
                 })
             )
             return Promise.resolve()
@@ -63,7 +63,7 @@ module.exports = Object.create(
             this.jsonRoutes = {}
 
             let [files] = await this.P(this.Fs.readdir, [
-                `${__dirname}/resources`,
+                `${__dirname}/resources`
             ])
 
             const fileHash = files
@@ -71,7 +71,7 @@ module.exports = Object.create(
                 .reduce(
                     (memo, name) =>
                         Object.assign(memo, {
-                            [name.replace('.js', '')]: true,
+                            [name.replace(".js", "")]: true
                         }),
                     {}
                 )
@@ -81,7 +81,7 @@ module.exports = Object.create(
                     name =>
                         (this.jsonRoutes[name] = fileHash[name]
                             ? name
-                            : '__proto__')
+                            : "__proto__")
                 )
             )
 
@@ -101,8 +101,8 @@ module.exports = Object.create(
 
             if (!file) {
                 response.writeHead(404, {
-                    'Content-Length': 0,
-                    'Content-Type': 'text/plain',
+                    "Content-Length": 0,
+                    "Content-Type": "text/plain"
                 })
                 return Promise.resolve(response.end())
             }
@@ -111,13 +111,13 @@ module.exports = Object.create(
                 request: { value: request },
                 response: { value: response },
                 path: { value: path },
-                qs: { value: qs },
+                qs: { value: qs }
             }).apply(request.method)
         },
 
         static(request, response, path) {
             var fileName = path.pop(),
-                filePath = `${__dirname}/${path.join('/')}/${fileName}`,
+                filePath = `${__dirname}/${path.join("/")}/${fileName}`,
                 ext = this.Path.extname(filePath)
 
             return this.P(this.Fs.stat, [filePath]).then(
@@ -125,31 +125,31 @@ module.exports = Object.create(
                     new Promise((resolve, reject) => {
                         var stream = this.Fs.createReadStream(filePath)
 
-                        response.on('error', e => {
+                        response.on("error", e => {
                             stream.end()
                             reject(e)
                         })
-                        stream.on('error', reject)
-                        stream.on('end', () => {
+                        stream.on("error", reject)
+                        stream.on("end", () => {
                             response.end()
                             resolve()
                         })
 
                         response.writeHead(200, {
-                            'Cache-Control': this.isDev
-                                ? `no-cache`
-                                : `max-age=600`,
-                            Connection: 'keep-alive',
-                            'Content-Encoding':
-                                ext === '.gz' ? 'gzip' : 'identity',
-                            'Content-Length': stat.size,
-                            'Content-Type': /\.css/.test(fileName)
-                                ? 'text/css'
-                                : ext === '.svg'
-                                    ? 'image/svg+xml'
-                                    : ext === '.pdf'
-                                        ? 'application/pdf'
-                                        : 'text/plain',
+                            "Cache-Control": this.isDev
+                                ? "no-cache"
+                                : "max-age=600",
+                            Connection: "keep-alive",
+                            "Content-Encoding":
+                                ext === ".gz" ? "gzip" : "identity",
+                            "Content-Length": stat.size,
+                            "Content-Type": /\.css/.test(fileName)
+                                ? "text/css"
+                                : ext === ".svg"
+                                    ? "image/svg+xml"
+                                    : ext === ".pdf"
+                                        ? "application/pdf"
+                                        : "text/plain"
                         })
                         stream.pipe(
                             response,
@@ -157,7 +157,7 @@ module.exports = Object.create(
                         )
                     })
             )
-        },
+        }
     }),
-    { isDev: { value: process.env.NODE_ENV === 'DEVELOPMENT' } }
+    { isDev: { value: process.env.NODE_ENV === "DEVELOPMENT" } }
 )

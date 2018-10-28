@@ -1,10 +1,10 @@
-const MyObject = require('../lib/MyObject')
+const MyObject = require("../lib/MyObject")
 
 module.exports = Object.create(
     Object.assign({}, MyObject, {
-        Enum: require('../lib/Enum'),
+        Enum: require("../lib/Enum"),
 
-        Model: require('../lib/Model'),
+        Model: require("../lib/Model"),
 
         initialize() {
             return this.getTableData()
@@ -24,29 +24,29 @@ module.exports = Object.create(
 
         columnToVar(columns, opts = {}) {
             const baseIndex = opts.baseIndex || 1,
-                join = opts.join || ', ',
-                alias = opts.alias ? `"${opts.alias}".` : ``
+                join = opts.join || ", ",
+                alias = opts.alias ? `"${opts.alias}".` : ""
             return columns.length
                 ? columns
                       .map((key, i) => `${alias}"${key}" = $${i + baseIndex}`)
                       .join(join)
-                : ''
+                : ""
         },
 
         getValue(column, data) {
             //TODO: validate?
-            return column.range === 'Geography' ? [data[0], data[1]] : data
+            return column.range === "Geography" ? [data[0], data[1]] : data
         },
 
         getVar(column, data, index) {
             const vars =
-                column.range === 'Geography'
+                column.range === "Geography"
                     ? `ST_Makepoint( $${index++}, $${index++} )`
-                    : column.range === 'Array' ||
+                    : column.range === "Array" ||
                       (column.isEnum && Array.isArray(column.range))
-                        ? `ARRAY[ ` +
-                          data.map(datum => `$${index++}`).join(', ') +
-                          ` ]`
+                        ? "ARRAY[ " +
+                          data.map(datum => `$${index++}`).join(", ") +
+                          " ]"
                         : `$${index++}`
             return { vars, index }
         },
@@ -77,19 +77,19 @@ module.exports = Object.create(
 
         insert(name, data, opts = {}) {
             const keys = Object.keys(data),
-                columns = keys.map(this.wrap).join(', '),
+                columns = keys.map(this.wrap).join(", "),
                 nullColumns = this.tables[name].columns
                     .filter(column => !columns.includes(column.name))
                     .map(column => column.name),
                 nullColumnsStr = nullColumns.length
-                    ? `, ${nullColumns.map(this.wrap).join(', ')}`
-                    : '',
+                    ? `, ${nullColumns.map(this.wrap).join(", ")}`
+                    : "",
                 nullVals = nullColumns.length
-                    ? `, ${nullColumns.map(column => `NULL`).join(', ')}`
-                    : '',
+                    ? `, ${nullColumns.map(column => "NULL").join(", ")}`
+                    : "",
                 queryData = this.getVarsValues(name, data, keys)
 
-            let upsert = ``,
+            let upsert = "",
                 upsertVals = []
 
             if (opts.upsert) {
@@ -97,22 +97,22 @@ module.exports = Object.create(
                     whereClause = `WHERE ${this.columnToVar(upsertKeys, {
                         alias: name,
                         baseIndex: queryData.vals.length + 1,
-                        join: ' AND ',
+                        join: " AND "
                     })}`
 
                 upsert = `ON CONFLICT ( ${upsertKeys
                     .map(key => `"${key}"`)
                     .join(
-                        ', '
+                        ", "
                     )} ) DO UPDATE SET ( ${columns}${nullColumnsStr} ) = ( ${queryData.vars.join(
-                    ', '
+                    ", "
                 )}${nullVals} ) ${whereClause} `
                 upsertVals = upsertKeys.map(key => opts.upsert[key])
             }
 
             return this._factory().query(
                 `INSERT INTO ${name} ( ${columns} ) VALUES ( ${queryData.vars.join(
-                    ', '
+                    ", "
                 )} ) ${upsert} RETURNING ${this._getSimpleSelect(name)}`,
                 queryData.vals.concat(upsertVals)
             )
@@ -121,8 +121,8 @@ module.exports = Object.create(
         select(name, where = {}, opts = {}) {
             const keys = Object.keys(where),
                 whereClause = keys.length
-                    ? `WHERE ${this.columnToVar(keys, { join: ' AND ' })}`
-                    : ``
+                    ? `WHERE ${this.columnToVar(keys, { join: " AND " })}`
+                    : ""
 
             return this._factory(opts).query(
                 `SELECT * FROM ${name} ${whereClause}`,
@@ -141,7 +141,7 @@ module.exports = Object.create(
                 `UPDATE ${name} SET ${this.columnToVar(
                     patchKeys
                 )} WHERE ${this.columnToVar(whereKeys, {
-                    baseIndex: patchKeys.length + 1,
+                    baseIndex: patchKeys.length + 1
                 })}`,
                 allKeys.map(
                     (key, i) => (i < patchKeys.length ? patch[key] : where[key])
@@ -158,11 +158,11 @@ module.exports = Object.create(
 
         truncate(omit = []) {
             return this.query(
-                `TRUNCATE ` +
+                "TRUNCATE " +
                     this.objectNames
                         .filter(table => !omit.includes(table))
                         .map(table => `"${table}"`)
-                        .join(', ')
+                        .join(", ")
             )
         },
 
@@ -180,22 +180,22 @@ module.exports = Object.create(
                 isEnum,
                 isNullable: column.is_nullable,
                 maximumCharacterLength:
-                    column.data_type === 'text'
+                    column.data_type === "text"
                         ? 1000
                         : column.character_maximum_length,
                 name: column.column_name,
-                range,
+                range
             }
         },
 
         getSelectList(table, opts = {}) {
-            return typeof table === 'string'
+            return typeof table === "string"
                 ? this._getSelect(table, opts.alias ? opts.alias : table)
                 : table
                       .map(t =>
                           this._getSelect(t, opts.alias ? opts.alias[t] : t)
                       )
-                      .join(', ')
+                      .join(", ")
         },
 
         _getSelect(table, alias) {
@@ -206,13 +206,13 @@ module.exports = Object.create(
                             column.name
                         }"`
                 )
-                .join(', ')
+                .join(", ")
         },
 
         _getSimpleSelect(table) {
             return this.tables[table].columns
                 .map(column => `"${column.name}"`)
-                .join(', ')
+                .join(", ")
         },
 
         getTableData() {
@@ -230,7 +230,7 @@ module.exports = Object.create(
                                                 row,
                                                 columnRow
                                             )
-                                        ),
+                                        )
                                     })
                                 )
                             )
@@ -245,7 +245,7 @@ module.exports = Object.create(
                                     row.pg_get_constraintdef
                                 )
                                 let column = this.tables[
-                                    row.tablefrom.replace(/"/g, '')
+                                    row.tablefrom.replace(/"/g, "")
                                 ].columns.find(
                                     column => column.name === match[1]
                                 )
@@ -255,7 +255,7 @@ module.exports = Object.create(
                                     column: match[3],
                                     recordType: this.tables[match[2]].meta
                                         ? this.tables[match[2]].meta.recordType
-                                        : null,
+                                        : null
                                 }
                             })
                         )
@@ -267,18 +267,18 @@ module.exports = Object.create(
                         const table = this.tables[tableName]
                         table.model = Object.create(this.Model, {}).constructor(
                             table.columns,
-                            { storeBy: ['name'] }
+                            { storeBy: ["name"] }
                         )
                     })
                     return Promise.resolve()
                 })
                 .then(() =>
-                    this.query(`SELECT * FROM division`).then(divisions =>
+                    this.query("SELECT * FROM division").then(divisions =>
                         Promise.resolve(
                             (this.divisions = Object.create(
                                 this.Model
                             ).constructor(divisions, {
-                                storeBy: ['id', 'name'],
+                                storeBy: ["id", "name"]
                             }))
                         )
                     )
@@ -288,7 +288,7 @@ module.exports = Object.create(
         _factory(data) {
             return Object.create(
                 {
-                    CopyTo: require('pg-copy-streams').to,
+                    CopyTo: require("pg-copy-streams").to,
 
                     P: MyObject.P,
 
@@ -330,7 +330,7 @@ module.exports = Object.create(
                     rollback(e) {
                         return this.P(
                             this.client.query,
-                            ['ROLLBACK'],
+                            ["ROLLBACK"],
                             this.client
                         )
                             .then(() => {
@@ -353,11 +353,11 @@ module.exports = Object.create(
                                         this.CopyTo(query)
                                     )
                                     stream.pipe(pipe)
-                                    stream.on('end', () => {
+                                    stream.on("end", () => {
                                         resolve()
                                         this.done()
                                     })
-                                    stream.on('error', e => {
+                                    stream.on("error", e => {
                                         reject(e)
                                         this.done()
                                     })
@@ -369,7 +369,7 @@ module.exports = Object.create(
                         return this.connect().then(() => {
                             let chain = this.P(
                                 this.client.query,
-                                [`BEGIN`],
+                                ["BEGIN"],
                                 this.client
                             ).catch(e => this.rollback(e))
 
@@ -387,12 +387,12 @@ module.exports = Object.create(
                             return chain.then(() =>
                                 this.P(
                                     this.client.query,
-                                    ['COMMIT'],
+                                    ["COMMIT"],
                                     this.client
                                 ).then(() => Promise.resolve(this.done()))
                             )
                         })
-                    },
+                    }
                 },
                 { pool: { value: this.pool } }
             )
@@ -401,79 +401,79 @@ module.exports = Object.create(
         _queries: {
             selectAllTables() {
                 return [
-                    'SELECT table_name',
-                    'FROM information_schema.tables',
+                    "SELECT table_name",
+                    "FROM information_schema.tables",
                     "WHERE table_schema='public'",
-                    "AND table_type='BASE TABLE';",
-                ].join(' ')
+                    "AND table_type='BASE TABLE';"
+                ].join(" ")
             },
 
             selectForeignKeys() {
                 return [
-                    'SELECT conrelid::regclass AS tableFrom, conname, pg_get_constraintdef(c.oid)',
-                    'FROM pg_constraint c',
-                    'JOIN pg_namespace n ON n.oid = c.connamespace',
-                    "WHERE contype = 'f' AND n.nspname = 'public';",
-                ].join(' ')
+                    "SELECT conrelid::regclass AS tableFrom, conname, pg_get_constraintdef(c.oid)",
+                    "FROM pg_constraint c",
+                    "JOIN pg_namespace n ON n.oid = c.connamespace",
+                    "WHERE contype = 'f' AND n.nspname = 'public';"
+                ].join(" ")
             },
 
             selectTableColumns(tableName) {
                 return [
-                    'SELECT column_name, data_type, is_nullable, character_maximum_length',
-                    'FROM information_schema.columns',
-                    `WHERE table_name = '${tableName}'`,
-                ].join(' ')
-            },
+                    "SELECT column_name, data_type, is_nullable, character_maximum_length",
+                    "FROM information_schema.columns",
+                    `WHERE table_name = '${tableName}'`
+                ].join(" ")
+            }
         },
 
         dataTypeToRange: {
-            bigint: 'Integer',
-            boolean: 'Boolean',
-            'character varying': 'Text',
-            date: 'Date',
-            integer: 'Integer',
-            money: 'Float',
-            numeric: 'Float',
-            real: 'Float',
-            'timestamp with time zone': 'DateTime',
-            text: 'Text',
+            bigint: "Integer",
+            boolean: "Boolean",
+            "character varying": "Text",
+            date: "Date",
+            integer: "Integer",
+            money: "Float",
+            numeric: "Float",
+            real: "Float",
+            "timestamp with time zone": "DateTime",
+            text: "Text"
         },
 
         enumReference: {
             account: {
-                gender: 'Gender',
-                offspring: 'OffspringStatus',
-                relstatus: 'RelationshipStatus',
-                intent: 'Intent',
-                sexuality: 'Sexuality',
-                ethnicity: 'Ethnicity',
-                ethnicity_2: 'Ethnicity',
-                religion: 'Religion',
-                religiousness: 'Religiousness',
-                smoking: 'Frequency',
-                drugs: 'Frequency',
-                alcohol: 'Frequency',
-                education: 'EducationLevel',
+                gender: "Gender",
+                offspring: "OffspringStatus",
+                relstatus: "RelationshipStatus",
+                intent: "Intent",
+                sexuality: "Sexuality",
+                ethnicity: "Ethnicity",
+                ethnicity_2: "Ethnicity",
+                religion: "Religion",
+                religiousness: "Religiousness",
+                smoking: "Frequency",
+                drugs: "Frequency",
+                alcohol: "Frequency",
+                education: "EducationLevel"
             },
             accountLocation: {
-                location: 'Geography',
+                location: "Geography"
             },
             matchfilters: {
-                intent: ['Intent'],
-                offspring: ['OffspringStatus'],
-                ethnicity: ['Ethnicity'],
-                religion: ['Religion'],
-                religiousness: ['Religiousness'],
-                smoking: ['Frequency'],
-                alcohol: ['Frequency'],
-                sexuality: ['Sexuality'],
-                drugs: ['Frequency'],
-                edu: ['EducationLevel'],
-            },
-        },
+                intent: ["Intent"],
+                offspring: ["OffspringStatus"],
+                ethnicity: ["Ethnicity"],
+                religion: ["Religion"],
+                religiousness: ["Religiousness"],
+                smoking: ["Frequency"],
+                alcohol: ["Frequency"],
+                sexuality: ["Sexuality"],
+                drugs: ["Frequency"],
+                edu: ["EducationLevel"]
+            }
+        }
     }),
     {
-        pool: { value: new (require('pg')).Pool() },
-        tables: { value: {} },
+        pool: { value: new (require("pg")).Pool() },
+        tables: { value: {} }
     }
 )

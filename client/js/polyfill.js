@@ -1,10 +1,10 @@
-if (typeof Object.assign != 'function') {
+if (typeof Object.assign != "function") {
     Object.assign = function(target, varArgs) {
         // .length of function is 2
-        'use strict'
+        "use strict"
         if (target == null) {
             // TypeError if undefined or null
-            throw new TypeError('Cannot convert undefined or null to object')
+            throw new TypeError("Cannot convert undefined or null to object")
         }
 
         var to = Object(target)
@@ -69,6 +69,6 @@ window.requestAnimationFrame =
     window.mozRequestAnimationFrame ||
     requestAnimationFramePolyfill
 
-require('smoothscroll-polyfill').polyfill()
+require("smoothscroll-polyfill").polyfill()
 
 module.exports = true

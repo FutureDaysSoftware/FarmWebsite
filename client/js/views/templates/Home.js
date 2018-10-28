@@ -5,9 +5,9 @@ module.exports = function({ model }) {
 	    	<div>${image.date}<br/>${image.caption}</div>
 	  	</div>`
         return memo + markup
-    }, '')
+    }, "")
     return `<div>
-	<img data-src='${this.ImageSrc('FutureDaysFarmLogo.svg')}' alt='Logo'/> 
+	<img data-src='${this.ImageSrc("FutureDaysFarmLogo.svg")}' alt='Logo'/> 
 	<div>Welcome Headline</div>
 	<div>allegan county, michigan</div>
 	<div>Praesent laoreet ornare ligula, ac accumsan turpis sagittis at.  Integer auctor egestas eleifend. Etiam luctus 

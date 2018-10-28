@@ -1,13 +1,13 @@
 module.exports = Object.create(
-    Object.assign({}, require('../../lib/MyObject'), {
-        ViewFactory: require('./factory/View'),
+    Object.assign({}, require("../../lib/MyObject"), {
+        ViewFactory: require("./factory/View"),
 
-        Views: require('./.ViewMap'),
+        Views: require("./.ViewMap"),
 
-        Singletons: ['Header'],
+        Singletons: ["Header"],
 
         initialize() {
-            this.contentContainer = document.querySelector('#content')
+            this.contentContainer = document.querySelector("#content")
 
             this.ViewFactory.constructor()
 
@@ -17,22 +17,22 @@ module.exports = Object.create(
 
             window.onpopstate = this.handle.bind(this)
 
-            this.Views.Header.on('navigate', route => this.navigate(route))
+            this.Views.Header.on("navigate", route => this.navigate(route))
 
-            this.footer = this.ViewFactory.create('footer', {
-                insertion: { el: document.body },
+            this.footer = this.ViewFactory.create("footer", {
+                insertion: { el: document.body }
             })
 
             this.handle()
         },
 
         handle() {
-            this.handler(window.location.pathname.split('/').slice(1))
+            this.handler(window.location.pathname.split("/").slice(1))
         },
 
         handler(path) {
             const name = this.pathToView(path[0]),
-                view = this.Views[name] ? name : 'home'
+                view = this.Views[name] ? name : "home"
 
             if (view === this.currentView)
                 return this.views[view].onNavigation(path.slice(1))
@@ -51,34 +51,34 @@ module.exports = Object.create(
                     return Promise.resolve(
                         (this.views[view] = this.ViewFactory.create(view, {
                             insertion: { el: this.contentContainer },
-                            path,
+                            path
                         })
-                            .on('navigate', (route, options) =>
+                            .on("navigate", (route, options) =>
                                 this.navigate(route, options)
                             )
-                            .on('deleted', () => delete this.views[view]))
+                            .on("deleted", () => delete this.views[view]))
                     )
                 })
                 .catch(this.Error)
 
             this.footer.els.container.classList.toggle(
-                'hidden',
-                view === 'Admin'
+                "hidden",
+                view === "Admin"
             )
         },
 
         navigate(location, options = {}) {
             if (options.replace || options.up) {
-                let path = `${window.location.pathname}`.split('/')
+                let path = `${window.location.pathname}`.split("/")
                 path.pop()
                 if (options.replace) path.push(location)
-                location = path.join('/')
+                location = path.join("/")
             } else if (options.append) {
                 location = `${window.location.pathname}/${location}`
             }
 
             if (location !== window.location.pathname)
-                history.pushState({}, '', location)
+                history.pushState({}, "", location)
             if (!options.silent) this.handle()
         },
 
@@ -94,15 +94,15 @@ module.exports = Object.create(
         },
 
         pathToView(path) {
-            const hyphenSplit = path.split('-')
+            const hyphenSplit = path.split("-")
             return hyphenSplit
                 .map(item => this.capitalizeFirstLetter(item))
-                .join('')
+                .join("")
         },
 
         scrollToTop() {
-            window.scroll({ top: 0, left: 0, behavior: 'smooth' })
-        },
+            window.scroll({ top: 0, left: 0, behavior: "smooth" })
+        }
     }),
-    { currentView: { value: '', writable: true }, views: { value: {} } }
+    { currentView: { value: "", writable: true }, views: { value: {} } }
 )

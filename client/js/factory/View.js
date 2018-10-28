@@ -2,15 +2,15 @@ module.exports = Object.create(
     {
         constructor() {
             this.range = document.createRange()
-            this.range.selectNode(document.getElementsByTagName('div').item(0))
+            this.range.selectNode(document.getElementsByTagName("div").item(0))
             return this
         },
 
         create(name, opts) {
             const lower = name
             name = (name.charAt(0).toUpperCase() + name.slice(1)).replace(
-                '-',
-                ''
+                "-",
+                ""
             )
 
             return Object.create(
@@ -25,19 +25,19 @@ module.exports = Object.create(
                     model: {
                         value: this.Models[name]
                             ? Object.create(this.Models[name])
-                            : {},
+                            : {}
                     },
-                    user: { value: this.User },
+                    user: { value: this.User }
                 })
             ).constructor(opts)
-        },
+        }
     },
     {
-        Header: { value: require('../views/Header') },
-        Models: { value: require('../.ModelMap') },
-        Templates: { value: require('../.TemplateMap') },
-        Toast: { value: require('../views/Toast') },
-        User: { value: require('../models/User') },
-        Views: { value: require('../.ViewMap') },
+        Header: { value: require("../views/Header") },
+        Models: { value: require("../.ModelMap") },
+        Templates: { value: require("../.TemplateMap") },
+        Toast: { value: require("../views/Toast") },
+        User: { value: require("../models/User") },
+        Views: { value: require("../.ViewMap") }
     }
 )

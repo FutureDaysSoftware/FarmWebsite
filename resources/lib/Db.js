@@ -1,8 +1,8 @@
 module.exports = Object.create(
     {
-        Mongo: require('../../dal/Mongo'),
+        Mongo: require("../../dal/Mongo"),
 
-        Postgres: require('../../dal/Postgres'),
+        Postgres: require("../../dal/Postgres"),
 
         apply(resource) {
             if (this.Mongo.model[resource.path[0]])
@@ -37,11 +37,11 @@ module.exports = Object.create(
 
             queryKeys.forEach(key => {
                 const datum = resource.query[key],
-                    isObj = Boolean(typeof datum === 'object'),
-                    operation = isObj ? datum.operation : `=`
+                    isObj = Boolean(typeof datum === "object"),
+                    operation = isObj ? datum.operation : "="
 
                 if (isObj && !this._validOperations.has(operation))
-                    throw Error('Invalid Operation')
+                    throw Error("Invalid Operation")
 
                 if (/join/i.test(operation)) {
                     let fkCol = this.Postgres.tables[
@@ -50,7 +50,7 @@ module.exports = Object.create(
                     if (fkCol === undefined)
                         throw Error(`Invalid join ${key}: ${datum}`)
                     joins.push(
-                        `${operation === 'leftJoin' ? 'LEFT' : ''} JOIN "${
+                        `${operation === "leftJoin" ? "LEFT" : ""} JOIN "${
                             datum.value.table
                         }" ON "${name}"."${key}" = "${datum.value.table}"."${
                             datum.value.column
@@ -61,17 +61,17 @@ module.exports = Object.create(
                     whereList.push(
                         `"${name}"."${key}" ${operation} $${paramCtr++}`
                     )
-                    params.push(typeof datum === 'object' ? datum.value : datum)
+                    params.push(typeof datum === "object" ? datum.value : datum)
                 }
             })
 
-            where = paramCtr > 1 ? `WHERE ${whereList.join(' AND ')}` : ''
-            joins = joins.join(' ')
+            where = paramCtr > 1 ? `WHERE ${whereList.join(" AND ")}` : ""
+            joins = joins.join(" ")
             selects = Object.keys(selects)
                 .map(tableName =>
                     this._getColumns(tableName, { extend: joins.length })
                 )
-                .join(', ')
+                .join(", ")
 
             return this.Postgres.query(
                 `SELECT ${selects} FROM "${name}" ${joins} ${where}`,
@@ -84,8 +84,8 @@ module.exports = Object.create(
                 name = resource.path[0],
                 bodyKeys = Object.keys(resource.body),
                 set =
-                    'SET ' +
-                    bodyKeys.map(key => `"${key}" = $${paramCtr++}`).join(', ')
+                    "SET " +
+                    bodyKeys.map(key => `"${key}" = $${paramCtr++}`).join(", ")
 
             return this.Postgres.query(
                 `UPDATE "${name}" ${set} WHERE id = $${paramCtr} RETURNING ${this._getColumns(
@@ -98,15 +98,15 @@ module.exports = Object.create(
         POST(resource) {
             return this.Postgres.insert(resource.path[0], resource.body)
             /*
-        const bodyKeys = Object.keys( resource.body ),
-              name = resource.path[0],
-              columns = bodyKeys.map( key => this.Postgres.tables[ name ].columns.find( column => column.name === key ) )
+		const bodyKeys = Object.keys( resource.body ),
+			  name = resource.path[0],
+			  columns = bodyKeys.map( key => this.Postgres.tables[ name ].columns.find( column => column.name === key ) )
 
-        return this.Postgres.query(
-            `INSERT INTO "${name}" ( ${this._wrapKeys(bodyKeys)} ) VALUES ( ${ this._getValues( bodyKeys, columns ) } ) RETURNING ${this._getColumns(name, { columnOnly: true } )}`,
-            this._getParameters( bodyKeys, resource.body, columns )
-        )
-        */
+		return this.Postgres.query(
+			`INSERT INTO "${name}" ( ${this._wrapKeys(bodyKeys)} ) VALUES ( ${ this._getValues( bodyKeys, columns ) } ) RETURNING ${this._getColumns(name, { columnOnly: true } )}`,
+			this._getParameters( bodyKeys, resource.body, columns )
+		)
+		*/
         },
 
         _getColumns(name, opts = {}) {
@@ -118,25 +118,25 @@ module.exports = Object.create(
                     if (opts.extend) rv += ` as "${name}.${column.name}"`
                     return rv
                 })
-                .join(', ')
+                .join(", ")
         },
 
         _getValues(keys, columns) {
             let varIdx = 1
             return keys
                 .map((key, i) => {
-                    return columns[i].range === 'Geography'
+                    return columns[i].range === "Geography"
                         ? `ST_Makepoint( $${varIdx++}, $${varIdx++} )`
                         : `$${varIdx++}`
                 })
-                .join(', ')
+                .join(", ")
         },
 
         _getParameters(keys, body, columns) {
             return keys.reduce(
                 (memo, key, i) =>
                     (memo = memo.concat(
-                        columns[i].range === 'Geography'
+                        columns[i].range === "Geography"
                             ? [body[key][0], body[key][1]]
                             : body[key]
                     )),
@@ -145,19 +145,19 @@ module.exports = Object.create(
         },
 
         _validOperations: new Set([
-            '<',
-            '>',
-            '<=',
-            '>=',
-            '=',
-            '<>',
-            '!=',
-            '~*',
-            'join',
-            'leftJoin',
+            "<",
+            ">",
+            "<=",
+            ">=",
+            "=",
+            "<>",
+            "!=",
+            "~*",
+            "join",
+            "leftJoin"
         ]),
 
-        _wrapKeys: keys => keys.map(key => `"${key}"`).join(', '),
+        _wrapKeys: keys => keys.map(key => `"${key}"`).join(", ")
     },
     {}
 )

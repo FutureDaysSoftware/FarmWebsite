@@ -1,24 +1,24 @@
-const { AWSAppSyncClient } = require('aws-appsync')
+const { AWSAppSyncClient } = require("aws-appsync")
 
-import { AUTH_TYPE } from 'aws-appsync/lib/link/auth-link'
-import { string } from '@conduitvc/appsync-emulator-serverless/testJWT'
+import { AUTH_TYPE } from "aws-appsync/lib/link/auth-link"
+import { string } from "@conduitvc/appsync-emulator-serverless/testJWT"
 
 const apolloClient = new AWSAppSyncClient({
-    url: 'http://localhost:5001/graphql',
-    region: 'us-fake-1',
+    url: "http://localhost:5001/graphql",
+    region: "us-fake-1",
     disableOffline: true,
     auth: {
         type: AUTH_TYPE.AMAZON_COGNITO_USER_POOLS,
-        jwtToken: () => string,
-    },
+        jwtToken: () => string
+    }
 })
 
 module.exports = Object.assign(
     {},
-    require('../../../lib/MyObject'),
-    require('events').EventEmitter.prototype,
+    require("../../../lib/MyObject"),
+    require("events").EventEmitter.prototype,
     {
-        gql: require('graphql-tag'),
+        gql: require("graphql-tag"),
 
         apolloClient,
 
@@ -26,13 +26,13 @@ module.exports = Object.assign(
             return Array.from(el.querySelectorAll(selector))
         },
 
-        TemplateContext: require('../TemplateContext'),
+        TemplateContext: require("../TemplateContext"),
 
-        Model: require('../models/__proto__'),
+        Model: require("../models/__proto__"),
 
-        OptimizedResize: require('./lib/OptimizedResize'),
+        OptimizedResize: require("./lib/OptimizedResize"),
 
-        Xhr: require('../Xhr'),
+        Xhr: require("../Xhr"),
 
         bindEvent(key, event, el) {
             const els = el
@@ -45,7 +45,7 @@ module.exports = Object.assign(
             if (!this[`_${name}`]) this[`_${name}`] = e => this[name](e)
 
             els.forEach(el =>
-                el.addEventListener(event || 'click', this[`_${name}`])
+                el.addEventListener(event || "click", this[`_${name}`])
             )
         },
 
@@ -68,7 +68,7 @@ module.exports = Object.assign(
         delegateEvents(key, el) {
             var type = typeof this.events[key]
 
-            if (type === 'string') {
+            if (type === "string") {
                 this.bindEvent(key, this.events[key], el)
             } else if (Array.isArray(this.events[key])) {
                 this.events[key].forEach(eventObj =>
@@ -84,7 +84,7 @@ module.exports = Object.assign(
                 const container = this.els.container,
                     parent = container.parentNode
                 if (container && parent) parent.removeChild(container)
-                if (!silent) this.emit('deleted')
+                if (!silent) this.emit("deleted")
                 return Promise.resolve()
             })
         },
@@ -93,11 +93,11 @@ module.exports = Object.assign(
 
         fadeInImage(el) {
             el.onload = () => {
-                this.emit('imgLoaded', el)
-                el.removeAttribute('data-src')
+                this.emit("imgLoaded", el)
+                el.removeAttribute("data-src")
             }
 
-            el.setAttribute('src', el.getAttribute('data-src'))
+            el.setAttribute("src", el.getAttribute("data-src"))
         },
 
         getEventMethodName(key, event) {
@@ -122,7 +122,7 @@ module.exports = Object.assign(
 
             if (this.templateOptions)
                 rv.opts =
-                    typeof this.templateOptions === 'function'
+                    typeof this.templateOptions === "function"
                         ? this.templateOptions()
                         : this.templateOptions || {}
 
@@ -131,10 +131,10 @@ module.exports = Object.assign(
 
         handleLogin() {
             this.factory
-                .create('login', {
-                    insertion: { el: document.querySelector('#content') },
+                .create("login", {
+                    insertion: { el: document.querySelector("#content") }
                 })
-                .on('loggedIn', () => this.onLogin())
+                .on("loggedIn", () => this.onLogin())
 
             return this
         },
@@ -150,14 +150,14 @@ module.exports = Object.assign(
         },
 
         hideSync() {
-            this.els.container.classList.add('hidden')
+            this.els.container.classList.add("hidden")
             return this
         },
 
         _hideEl(el, resolve, hash, isSlow) {
-            el.removeEventListener('animationend', this[hash])
-            el.classList.add('hidden')
-            el.classList.remove(`animate-out${isSlow ? '-slow' : ''}`)
+            el.removeEventListener("animationend", this[hash])
+            el.classList.add("hidden")
+            el.classList.remove(`animate-out${isSlow ? "-slow" : ""}`)
             delete this[hash]
             this.isHiding = false
             resolve()
@@ -171,8 +171,8 @@ module.exports = Object.assign(
 
             return new Promise(resolve => {
                 this[hash] = e => this._hideEl(el, resolve, hash, isSlow)
-                el.addEventListener('animationend', this[hash])
-                el.classList.add(`animate-out${isSlow ? '-slow' : ''}`)
+                el.addEventListener("animationend", this[hash])
+                el.classList.add(`animate-out${isSlow ? "-slow" : ""}`)
             })
         },
 
@@ -184,24 +184,24 @@ module.exports = Object.assign(
             return Object.assign(this, {
                 els: {},
                 slurp: {
-                    attr: 'data-js',
-                    view: 'data-view',
-                    name: 'data-name',
-                    img: 'data-src',
+                    attr: "data-js",
+                    view: "data-view",
+                    name: "data-name",
+                    img: "data-src"
                 },
-                views: {},
+                views: {}
             })
         },
 
         insertToDom(fragment, options) {
             const insertion =
-                typeof options.insertion === 'function'
+                typeof options.insertion === "function"
                     ? options.insertion()
                     : options.insertion
 
-            insertion.method === 'insertBefore'
+            insertion.method === "insertBefore"
                 ? insertion.el.parentNode.insertBefore(fragment, insertion.el)
-                : insertion.el[insertion.method || 'appendChild'](fragment)
+                : insertion.el[insertion.method || "appendChild"](fragment)
         },
 
         isAllowed(user) {
@@ -209,7 +209,7 @@ module.exports = Object.assign(
 
             const userRoles = new Set(user.data.roles)
 
-            if (typeof this.requiresRole === 'string')
+            if (typeof this.requiresRole === "string")
                 return userRoles.has(this.requiresRole)
 
             if (Array.isArray(this.requiresRole)) {
@@ -225,8 +225,8 @@ module.exports = Object.assign(
 
         isHidden(el) {
             return el
-                ? el.classList.contains('hidden')
-                : this.els.container.classList.contains('hidden')
+                ? el.classList.contains("hidden")
+                : this.els.container.classList.contains("hidden")
         },
 
         onLogin() {
@@ -240,7 +240,7 @@ module.exports = Object.assign(
         },
 
         showNoAccess() {
-            alert('No privileges, son')
+            alert("No privileges, son")
             return this
         },
 
@@ -259,8 +259,8 @@ module.exports = Object.assign(
                 isView: true,
                 storeFragment: this.storeFragment,
                 template: Reflect.apply(this.template, this.TemplateContext, [
-                    this.getTemplateOptions(),
-                ]),
+                    this.getTemplateOptions()
+                ])
             })
 
             this.renderSubviews()
@@ -286,19 +286,19 @@ module.exports = Object.assign(
 
                 if (this.Views && this.Views[obj.view])
                     opts =
-                        typeof this.Views[obj.view] === 'object'
+                        typeof this.Views[obj.view] === "object"
                             ? this.Views[obj.view]
                             : Reflect.apply(this.Views[obj.view], this, [])
                 if (this.Views && this.Views[name])
                     opts =
-                        typeof this.Views[name] === 'object'
+                        typeof this.Views[name] === "object"
                             ? this.Views[name]
                             : Reflect.apply(this.Views[name], this, [])
 
                 this.views[name] = this.factory.create(
                     obj.view,
                     Object.assign(
-                        { insertion: { el: obj.el, method: 'insertBefore' } },
+                        { insertion: { el: obj.el, method: "insertBefore" } },
                         opts
                     )
                 )
@@ -318,7 +318,7 @@ module.exports = Object.assign(
                         )
                 }
 
-                if (obj.el.classList.contains('hidden'))
+                if (obj.el.classList.contains("hidden"))
                     this.views[name].hideSync()
                 obj.el.remove()
             })
@@ -329,12 +329,12 @@ module.exports = Object.assign(
         },
 
         scootAway() {
-            this.Toast.showMessage('error', 'You are not allowed here.')
+            this.Toast.showMessage("error", "You are not allowed here.")
                 .catch(e => {
                     this.Error(e)
-                    this.emit('navigate', `/`)
+                    this.emit("navigate", "/")
                 })
-                .then(() => this.emit('navigate', `/`))
+                .then(() => this.emit("navigate", "/"))
 
             return this
         },
@@ -344,13 +344,13 @@ module.exports = Object.assign(
         },
 
         showSync() {
-            this.els.container.classList.remove('hidden')
+            this.els.container.classList.remove("hidden")
             return this
         },
 
         _showEl(el, resolve, hash, isSlow) {
-            el.removeEventListener('animationend', this[hash])
-            el.classList.remove(`animate-in${isSlow ? '-slow' : ''}`)
+            el.removeEventListener("animationend", this[hash])
+            el.classList.remove(`animate-in${isSlow ? "-slow" : ""}`)
             delete this[hash]
             resolve()
         },
@@ -361,16 +361,16 @@ module.exports = Object.assign(
 
             return new Promise(resolve => {
                 this[hash] = e => this._showEl(el, resolve, hash, isSlow)
-                el.addEventListener('animationend', this[hash])
-                el.classList.remove('hidden')
-                el.classList.add(`animate-in${isSlow ? '-slow' : ''}`)
+                el.addEventListener("animationend", this[hash])
+                el.classList.remove("hidden")
+                el.classList.add(`animate-in${isSlow ? "-slow" : ""}`)
             })
         },
 
         slurpEl(el) {
-            const key = el.getAttribute(this.slurp.attr) || 'container'
+            const key = el.getAttribute(this.slurp.attr) || "container"
 
-            if (key === 'container') {
+            if (key === "container") {
                 el.classList.add(this.name)
                 if (this.klass) el.classList.add(this.klass)
             }
@@ -391,7 +391,7 @@ module.exports = Object.assign(
                 selector = `[${this.slurp.attr}]`,
                 viewSelector = `[${this.slurp.view}]`,
                 imgSelector = `[${this.slurp.img}]`,
-                firstEl = fragment.querySelector('*')
+                firstEl = fragment.querySelector("*")
 
             if (options.isView || firstEl.getAttribute(this.slurp.attr))
                 this.slurpEl(firstEl)
@@ -407,7 +407,7 @@ module.exports = Object.assign(
                     this.subviewElements.push({
                         el,
                         view: el.getAttribute(this.slurp.view),
-                        name: el.getAttribute(this.slurp.name),
+                        name: el.getAttribute(this.slurp.name)
                     })
                 }
             })
@@ -430,8 +430,8 @@ module.exports = Object.assign(
                 name = this.getEventMethodName(key, event)
 
             els.forEach(el =>
-                el.removeEventListener(event || 'click', this[`_${name}`])
+                el.removeEventListener(event || "click", this[`_${name}`])
             )
-        },
+        }
     }
 )
