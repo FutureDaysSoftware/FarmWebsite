@@ -2,6 +2,8 @@
   "description": "FutureDays Farm",
   "dependencies": {
     "babel-eslint": "^10.0.1",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-prettier": "^3.0.0",
     "graphql": "0.13.0",
     "graphql-tag": "^2.9.2",
     "jest": "^23.1.0",
@@ -29,7 +31,6 @@
   "license": "MIT",
   "name": "OurWebsite",
   "pre-commit": [
-    "test"
   ],
   "repository": {
     "type": "git",

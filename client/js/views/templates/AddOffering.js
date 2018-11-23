@@ -1,5 +1,5 @@
 module.exports = function({ model }) {
-    return `<div>
+  return `<div>
 	<form>
 		<div>Item Name:</div>
 		<div><input data-js="name" type="text"></div>
@@ -9,5 +9,5 @@ module.exports = function({ model }) {
 		<div><input type="text"></div>
 		<div><input data-js="submit" type="button" value="Submit"></div>
 	</form> 
-	</div>`
-}
+	</div>`;
+};

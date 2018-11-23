@@ -1,18 +1,18 @@
-require("node-env-file")(__dirname + "/.env")
+require('node-env-file')(__dirname + '/.env');
 
-const Router = require("./router"),
-    httpPort = process.env.HTTP_PORT
+const Router = require('./router'),
+  httpPort = process.env.HTTP_PORT;
 
 module.exports = (async () => {
-    try {
-        await Router.initialize()
+  try {
+    await Router.initialize();
 
-        require("http")
-            .createServer(Router.handler.bind(Router))
-            .listen(httpPort)
+    require('http')
+      .createServer(Router.handler.bind(Router))
+      .listen(httpPort);
 
-        console.log(`HTTP server listening at ${httpPort}`)
-    } catch (e) {
-        console.log(`Error initializing app: ${e.stack || e}`)
-    }
-})()
+    console.log(`HTTP server listening at ${httpPort}`);
+  } catch (e) {
+    console.log(`Error initializing app: ${e.stack || e}`);
+  }
+})();

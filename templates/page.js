@@ -8,19 +8,19 @@ module.exports = p => `
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <meta property="og:url" content="https://${process.env.DOMAIN}${
-    p.request.url
+  p.request.url
 }" />
         <meta property="og:title" content="${p.title}" />
         <meta property="og:description" content="FutureDays Software is an elite technology company providing solutions." />
         <meta property="og:image" content="https://${
-            process.env.DOMAIN
+          process.env.DOMAIN
         }/static/img/hazy-tree.png" />
         <meta property="og:type" content="article" />
  
         ${
-            p.isDev
-                ? "<script src='/static/debug/debug.js.gz'></script>"
-                : "<script src='/static/bundle.js.gz'></script>"
+          p.isDev
+            ? "<script src='/static/debug/debug.js.gz'></script>"
+            : "<script src='/static/bundle.js.gz'></script>"
         }      
 
         <title>${p.title}</title>
@@ -32,12 +32,12 @@ module.exports = p => `
     </body>
 
     ${
-        p.isDev
-            ? `<script src="//${
-                  process.env.DOMAIN
-              }:35729/livereload.js?snipver=1"/></script>`
-            : ""
+      p.isDev
+        ? `<script src="//${
+            process.env.DOMAIN
+          }:35729/livereload.js?snipver=1"/></script>`
+        : ''
     }
 
 </html>
-`
+`;

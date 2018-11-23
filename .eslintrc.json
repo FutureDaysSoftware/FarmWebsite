@@ -6,29 +6,6 @@
         "jest": true,
         "node": true
     },
-    "extends": "eslint:recommended",
-    "parser": "babel-eslint",
-    "rules": {
-        "for-direction": 1,
-        "indent": 1,
-        "no-cond-assign": 1,
-        "no-console": 1,
-        "no-constant-condition": 1,
-        "no-control-regex": 1,
-        "no-dupe-keys": 1,
-        "no-empty": 1,
-        "no-extra-boolean-cast": 1,
-        "no-extra-semi": 1,
-        "no-fallthrough": 1,
-        "no-redeclare": 1,
-        "no-sparse-arrays": 1,
-        "no-undef": 1,
-        "no-unexpected-multiline": 1,
-        "no-unreachable": 1,
-        "no-unsafe-finally": 1,
-        "no-unused-vars": 1,
-        "no-useless-escape": 1,
-        "quotes": 1,
-        "semi": 1
-    }
+    "extends": ["plugin:prettier/recommended"],
+    "parser": "babel-eslint"
 }
